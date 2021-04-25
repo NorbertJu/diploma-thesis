@@ -1,9 +1,10 @@
 export default class Canvas {
-  constructor(turtleCanvas, scale) {
+  constructor(turtleCanvas, scale, parent) {
+    this.parent = parent;
     this.turtleCanvas = turtleCanvas;
-    this.turtleContext = this.turtleCanvas.getContext("2d");
-    this.turtleCanvas.width = this.width() * scale;
-    this.turtleCanvas.height = this.height() * scale;
+    this.turtleContext = turtleCanvas.getContext("2d");
+    this.turtleCanvas.width = turtleCanvas.offsetWidth * scale;
+    this.turtleCanvas.height = turtleCanvas.offsetHeight * scale;
     this.turtleContext.scale(scale,scale);
   }
 
@@ -18,15 +19,19 @@ export default class Canvas {
   }
 
   width() {
-    return this.turtleCanvas.offsetWidth;
+    return this.parent.offsetWidth-2;
   }
 
   height() {
-    return this.turtleCanvas.offsetHeight;
+    return this.parent.offsetHeight-2;
   }
 
-  penSize(width) {
+  set penSize(width) {
     this.turtleContext.lineWidth = width;
+  }
+
+  get penSize() {
+    return this.turtleContext.lineWidth;
   }
 
 }
