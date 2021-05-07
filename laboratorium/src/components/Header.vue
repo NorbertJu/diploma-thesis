@@ -1,9 +1,9 @@
 <template>
-  <div id="header">
-    <header>
-      <h1>L-System Lab</h1>
-    </header>
-  </div>
+  <nav class="navbar navbar-expand-lg bg-light shadow-sm" id="header">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">L-System Laboratory</span>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -13,17 +13,7 @@ export default {
 </script>
 
 <style scoped>
-header {
-  padding: 6px;
-  width: calc(100% - 12px);
-  height: 38px;
-  background-color: rgb(223, 223, 223);
-}
-
-h1 {
-  margin: 0;
-  padding-left: 20px;
-  position: relative;
-  float: left;
+#header {
+  z-index: 1;
 }
 </style>

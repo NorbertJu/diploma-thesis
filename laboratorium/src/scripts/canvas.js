@@ -1,21 +1,21 @@
 export default class Canvas {
-  constructor(turtleCanvas, scale, parent) {
+  constructor(canvas, scale, parent) {
     this.parent = parent;
-    this.turtleCanvas = turtleCanvas;
-    this.turtleContext = turtleCanvas.getContext("2d");
-    this.turtleCanvas.width = turtleCanvas.offsetWidth * scale;
-    this.turtleCanvas.height = turtleCanvas.offsetHeight * scale;
-    this.turtleContext.scale(scale,scale);
+    this.canvas = canvas;
+    this.context = canvas.getContext("2d");
+    this.canvas.width = canvas.offsetWidth * scale;
+    this.canvas.height = canvas.offsetHeight * scale;
+    this.context.scale(scale,scale);
   }
 
   line(fromX, fromY, toX, toY) {
-    this.turtleContext.moveTo(fromX, fromY);
-    this.turtleContext.lineTo(toX, toY);
+    this.context.moveTo(fromX, fromY);
+    this.context.lineTo(toX, toY);
   }
 
   color(colorName) {
-    this.turtleContext.fillStyle = colorName;
-    this.turtleContext.fillRect(0, 0, this.width(), this.height());
+    this.context.fillStyle = colorName;
+    this.context.fillRect(0, 0, this.width(), this.height());
   }
 
   width() {
@@ -26,12 +26,16 @@ export default class Canvas {
     return this.parent.offsetHeight-2;
   }
 
+  clear() {
+    this.context.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+  }
+
   set penSize(width) {
-    this.turtleContext.lineWidth = width;
+    this.context.lineWidth = width;
   }
 
   get penSize() {
-    return this.turtleContext.lineWidth;
+    return this.context.lineWidth;
   }
 
 }

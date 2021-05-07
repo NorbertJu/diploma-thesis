@@ -1,9 +1,7 @@
 export default class Turtle {
-  constructor(canvas, x, y) {
+  constructor(canvas) {
     this.canvas = canvas;
-    this.x = x ? x : Math.round(canvas.width()/2);
-    this.y = y ? y : Math.round(canvas.height()/2);
-    this.heading = 90;
+    this.reset();
     this.width = 1;
     this.pen = true;
     this.visible = true;
@@ -11,16 +9,14 @@ export default class Turtle {
   }
 
   fd(distance) {
-    this.canvas.turtleContext.beginPath();
+    this.canvas.context.beginPath();
     let cosAngle = Math.cos((this.heading * Math.PI) / 180.0);
     let sinAngle = Math.sin((this.heading * Math.PI) / 180.0);
     let newX = this.x + cosAngle * distance;
     let newY = this.y - sinAngle * distance;
     this.canvas.line(this.x, this.y, newX, newY);
-    this.checkPosition(newX, newY);
-    this.x = newX;
-    this.y = newY;
-    this.canvas.turtleContext.stroke();
+    this.goTo(newX, newY);
+    this.canvas.context.stroke();
   }
 
   lt(angle) {
@@ -60,6 +56,13 @@ export default class Turtle {
 
   seth(heading) {
     this.heading = heading;
+  }
+
+  reset() {
+    // +0.5 to allign with HTML canvas
+    this.x = Math.round(this.canvas.width()/2) + 0.5;
+    this.y = Math.round(this.canvas.height()/2) + 0.5;
+    this.seth(90);
   }
 
   checkPosition(x, y) {

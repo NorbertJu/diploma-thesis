@@ -1,17 +1,36 @@
 <template>
-  <div class="menu">
-    <label for="axiom">Axiom</label>
-    <input id="axiom" v-model="axiom">
-    <label for="rule">Rule</label>
-    <input id="rule" v-model="rule">
-    <label for="angle">Angle</label>
-    <input id="angle" v-model="angle">
-    <label for="line">Line length</label>
-    <input id="line" v-model="line">
-    <label for="iterations">Iterations</label>
-    <input id="iterations" v-model="iterations">
-    <button v-on:click="draw()">Draw</button>
-    <button v-on:click="resetTurtle()">Reset Turtle</button>
+  <div class="menu bg-light shadow">
+    <label for="axiom" class="form-label-sm small">Axiom</label>
+    <div class="input-group">
+      <input type="text" class="form-control form-control-sm" id="axiom" v-model="axiom">
+    </div>
+    <label for="rule" class="form-label-sm small">Rules</label>
+    <div class="row m-0">
+      <div class="col-2 p-0">
+        <input type="text" class="form-control form-control-sm" id="ruleKey" v-model="ruleKey">
+      </div>
+      <div class="col-1 p-0"></div>
+      <div class="col-9 p-0">
+        <input type="text" class="form-control form-control-sm" id="rule" v-model="rule">
+      </div>
+    </div>
+    <label for="angle" class="form-label-sm small">Angle</label>
+    <div class="input-group">
+      <input type="text" class="form-control form-control-sm" id="angle" v-model="angle">
+    </div>
+    <label for="axiom" class="form-label-sm small">Line</label>
+    <div class="input-group">
+      <input type="text" class="form-control form-control-sm" id="line" v-model="line">
+    </div>
+    <label for="axiom" class="form-label-sm small">Iterations</label>
+    <div class="input-group">
+      <input type="text" class="form-control form-control-sm" id="iterations" v-model="iterations">
+    </div>
+    <div class="row justify-content-evenly mt-3">
+      <button v-on:click="draw()" class="btn btn-outline-primary btn-sm col-3">Draw</button>
+      <button v-on:click="reset()" class="btn btn-outline-secondary btn-sm col-3">Reset</button>
+      <button v-on:click="clear()" class="btn btn-outline-danger btn-sm col-3">Clear</button>
+    </div>    
   </div>
 </template>
 
@@ -23,10 +42,11 @@ export default {
   data() {
     return {
       axiom: "",
+      ruleKey: "",
       rule: "",
-      angle: 0,
-      line: 0,
-      iterations: 0,
+      angle: 90,
+      line: 20,
+      iterations: 1,
       LSystem: new LSystem()
     }
   },
@@ -40,17 +60,23 @@ export default {
     rt() {
       this.turtle.rt(this.angle);
     },
-    resetTurtle() {
-      this.turtle.goTo(this.turtle.canvas.width()/2, this.turtle.canvas.height()/2);
+    reset() {
+      this.turtle.reset();
+    },
+    clear() {
+      this.turtle.canvas.clear();
     },
     draw() {
-      let result = this.LSystem.computeSystem(this.axiom, {"P": "F[+P][-P]"}, this.iterations);
+      let result = this.LSystem.computeSystem(this.axiom, this.rules, this.iterations);
       this.turtle.draw(result, this.line, this.angle);
     }
   },
   computed: {
     turtle() {
       return this.$store.state.turtle;
+    },
+    rules() {
+      return {[this.ruleKey]: this.rule};
     }
   }
 }
@@ -58,10 +84,11 @@ export default {
 
 <style scoped>
 .menu {
+  z-index: 0;
   position: relative;
   float: left;
-  width: 200px;
+  width: 280px;
   height: calc(100vh - 50px);
-  background-color: rgb(212, 212, 212);
+  padding: 10px;
 }
 </style>

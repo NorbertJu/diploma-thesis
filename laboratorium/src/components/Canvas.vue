@@ -130,13 +130,13 @@ export default {
   padding: 20px;
   position: relative;
   float: left;
-  width: calc(100% - 200px - 40px);
-  height: calc(100% - 50px - 40px);
+  width: calc(100% - 280px);
+  height: calc(100% - 50px);
 }
 
 .turtle {
   width: 12px;
-  height: auto;
+  height: 14px;
   position: absolute;
   cursor: grab;
 }
