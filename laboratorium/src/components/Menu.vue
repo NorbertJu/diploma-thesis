@@ -1,25 +1,33 @@
 <template>
   <div class="menu">
-    <input v-model="distance">
-    <button v-on:click="fd()">FD</button>
-    <input v-model="angle">
-    <button v-on:click="lt()">LT</button>
-    <button v-on:click="rt()">RT</button>
-    <input v-model="xcor">
-    <input v-model="ycor">
-    <button v-on:click="goTo()">Go to</button>
+    <label for="axiom">Axiom</label>
+    <input id="axiom" v-model="axiom">
+    <label for="rule">Rule</label>
+    <input id="rule" v-model="rule">
+    <label for="angle">Angle</label>
+    <input id="angle" v-model="angle">
+    <label for="line">Line length</label>
+    <input id="line" v-model="line">
+    <label for="iterations">Iterations</label>
+    <input id="iterations" v-model="iterations">
+    <button v-on:click="draw()">Draw</button>
+    <button v-on:click="resetTurtle()">Reset Turtle</button>
   </div>
 </template>
 
 <script>
+import LSystem from '../scripts/L-system';
+
 export default {
   name: 'Menu',
   data() {
     return {
-      distance: 100,
-      angle: 90,
-      xcor: 0,
-      ycor: 0
+      axiom: "",
+      rule: "",
+      angle: 0,
+      line: 0,
+      iterations: 0,
+      LSystem: new LSystem()
     }
   },
   methods: {
@@ -32,8 +40,12 @@ export default {
     rt() {
       this.turtle.rt(this.angle);
     },
-    goTo() {
-      this.turtle.goTo(this.xcor, this.ycor);
+    resetTurtle() {
+      this.turtle.goTo(this.turtle.canvas.width()/2, this.turtle.canvas.height()/2);
+    },
+    draw() {
+      let result = this.LSystem.computeSystem(this.axiom, {"P": "F[+P][-P]"}, this.iterations);
+      this.turtle.draw(result, this.line, this.angle);
     }
   },
   computed: {
@@ -44,7 +56,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .menu {
   position: relative;

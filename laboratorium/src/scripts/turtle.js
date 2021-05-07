@@ -58,12 +58,33 @@ export default class Turtle {
     this.canvas.penSize(width);
   }
 
+  seth(heading) {
+    this.heading = heading;
+  }
+
   checkPosition(x, y) {
-    console.log(x, y)
     if (x < 0 || y < 0 || x > this.canvas.width() || y > this.canvas.height()) {
       this.visible = false;
     } else {
       this.visible = true;
+    }
+  }
+
+  draw(system, line, angle) {
+    let stack = [];
+    for (let command of system) {
+      switch(command) {
+        case "F": this.fd(line); break;
+        case "+": this.rt(angle); break;
+        case "-": this.lt(angle); break;
+        case "[": stack.push({x: this.x, y: this.y, h: this.heading}); break;
+        case "]": {
+          let pos = stack.pop();
+          this.goTo(pos.x, pos.y);
+          this.seth(pos.h);
+          break;
+        }
+      }
     }
   }
 
