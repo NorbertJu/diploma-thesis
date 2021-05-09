@@ -70,8 +70,8 @@ export default {
        let newY = this.turtleImage.turtleY + (event.y - this.turtleImage.dragY);
        newY = newY > 0 ? newY : 0;
        newY = newY < this.canvas.height() ? newY : this.canvas.height();
-       this.turtle.x = newX;
-       this.turtle.y = newY;
+       this.turtle.X = newX;
+       this.turtle.Y = newY;
      }
     },
     drop() {

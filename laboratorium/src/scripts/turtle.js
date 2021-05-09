@@ -1,11 +1,29 @@
 export default class Turtle {
   constructor(canvas) {
     this.canvas = canvas;
-    this.reset();
     this.width = 1;
+    this.reset();
     this.pen = true;
     this.visible = true;
     this.color = {r:0, g:0, b:0, a:1}
+  }
+
+  set X(value) {
+    this.x = this.alignCoordinate(value);
+  }
+
+  set Y(value) {
+    this.y = this.alignCoordinate(value);
+  }
+
+  alignCoordinate(value) {
+    // 0.5 to allign with HTML canvas if pen width is odd
+    if (value%1 == 0 && this.width%2 == 1) {
+      value -= 0.5;
+    } else if (value%1 == 0.5 && this.width%2 == 0) {
+      value += 0.5;
+    }
+    return value;
   }
 
   fd(distance) {
@@ -45,8 +63,8 @@ export default class Turtle {
 
   goTo(x, y) {
     this.checkPosition(x, y);
-    this.x = x;
-    this.y = y;
+    this.X = x;
+    this.Y = y;
   }
 
   penSize(width) {
@@ -59,9 +77,7 @@ export default class Turtle {
   }
 
   reset() {
-    // +0.5 to allign with HTML canvas
-    this.x = Math.round(this.canvas.width()/2) + 0.5;
-    this.y = Math.round(this.canvas.height()/2) + 0.5;
+    this.goTo(this.canvas.width()/2, this.canvas.height()/2);
     this.seth(90);
   }
 
@@ -78,8 +94,8 @@ export default class Turtle {
     for (let command of system) {
       switch(command) {
         case "F": this.fd(line); break;
-        case "+": this.rt(angle); break;
-        case "-": this.lt(angle); break;
+        case "+": this.lt(angle); break;
+        case "-": this.rt(angle); break;
         case "[": stack.push({x: this.x, y: this.y, h: this.heading}); break;
         case "]": {
           let pos = stack.pop();
