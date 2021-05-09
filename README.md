@@ -9,4 +9,5 @@ Within this diploma master thesis, a software laboratory (interface for learning
 - [App](https://l-system-lab.github.io/)
 
 ## Contact
-Created by **Norbert Jurík**, noro.jurik@gmail.com
+Created by **Norbert Jurík**
+e-mail: noro.jurik@gmail.com
