@@ -63,8 +63,8 @@ export default class Turtle {
 
   goTo(x, y) {
     this.checkPosition(x, y);
-    this.X = x;
-    this.Y = y;
+    this.x = x;
+    this.y = y;
   }
 
   penSize(width) {
@@ -77,7 +77,8 @@ export default class Turtle {
   }
 
   reset() {
-    this.goTo(this.canvas.width()/2, this.canvas.height()/2);
+    this.X = this.canvas.width()/2;
+    this.Y = this.canvas.height()/2;
     this.seth(90);
   }
 
