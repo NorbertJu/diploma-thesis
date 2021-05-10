@@ -9,6 +9,7 @@ Work is being managed via [Kanban Project](https://github.com/NorbertJu/Diplomov
 
 ## Links
 - [Thesis](https://github.com/NorbertJu/Diplomovka/blob/literature/literature/diplomova_praca.pdf) (created via [Overleaf](https://www.overleaf.com/read/sxrfdhvxptck))
+in [Literature](https://github.com/NorbertJu/Diplomovka/tree/main/literature) folder
 - [Laboratory](https://l-system-lab.github.io/) (deployed via [GitHub Pages](https://github.com/L-System-Lab/L-System-Lab.github.io))
 - [Source Code](https://github.com/NorbertJu/Diplomovka/tree/main/laboratory)
 
