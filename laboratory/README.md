@@ -1,4 +1,4 @@
-# laboratorium
+# Laboratory
 
 ## Project setup
 ```
