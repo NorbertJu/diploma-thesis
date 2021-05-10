@@ -6,7 +6,7 @@ Within this diploma master thesis, a software laboratory (interface for learning
 
 ## Links
 - [Thesis](https://github.com/NorbertJu/Diplomovka/blob/literature/literature/diplomova_praca.pdf) (created via [Overleaf](https://www.overleaf.com/read/sxrfdhvxptck))
-- [App](https://l-system-lab.github.io/) (deployed via [GitHub Pages](https://github.com/L-System-Lab/L-System-Lab.github.io))
+- [Laboratory](https://l-system-lab.github.io/) (deployed via [GitHub Pages](https://github.com/L-System-Lab/L-System-Lab.github.io))
 
 ## Contact
 Created by **Norbert Jurík** (noro.jurik@gmail.com)
