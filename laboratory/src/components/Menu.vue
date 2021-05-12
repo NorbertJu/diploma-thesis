@@ -1,5 +1,5 @@
 <template>
-  <div class="menu bg-light shadow">
+  <div class="menu bg-light shadow border-end">
     <label for="axiom" class="form-label-sm small">Axiom</label>
     <div class="input-group">
       <input type="text" class="form-control form-control-sm" id="axiom" v-model="axiom">
@@ -88,7 +88,7 @@ export default {
   position: relative;
   float: left;
   width: 280px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 51px);
   padding: 10px;
 }
 </style>

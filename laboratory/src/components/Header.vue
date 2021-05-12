@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-light shadow-sm" id="header">
+  <nav class="navbar navbar-expand-lg bg-light shadow-sm border-bottom" id="header">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">L-System Laboratory</span>
     </div>

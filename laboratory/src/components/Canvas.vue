@@ -131,7 +131,7 @@ export default {
   position: relative;
   float: left;
   width: calc(100% - 280px);
-  height: calc(100% - 50px);
+  height: calc(100% - 51px);
 }
 
 .turtle {
