@@ -1,5 +1,7 @@
 # Laboratory
 
+Work in progress
+
 ## Project setup
 ```
 npm install
