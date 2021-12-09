@@ -7,8 +7,6 @@ Within this diploma master thesis, a software laboratory (interface for learning
 ## Progress
 Work is being managed via [Kanban](https://github.com/NorbertJu/Diplomovka/projects/1) project.
 
-[Presentation](https://github.com/NorbertJu/Diplomovka/blob/main/literature/L-Sys-Lab_pokrok.pdf) of the current state of work.
-
 ## Links
 - [Thesis](https://github.com/NorbertJu/Diplomovka/blob/literature/literature/diplomova_praca.pdf) (created via [Overleaf](https://www.overleaf.com/read/sxrfdhvxptck))
 in [Literature](https://github.com/NorbertJu/Diplomovka/tree/main/literature) folder
