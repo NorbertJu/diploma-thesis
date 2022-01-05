@@ -1,5 +1,8 @@
 <template>
   <div class="menu bg-light shadow">
+    <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
+      <span v-for="element in myArray" class="border rounded m-1" :key="element.id">{{element.name}}</span>
+    </draggable>
     <label for="axiom" class="form-label-sm small">Axiom</label>
     <div class="input-group">
       <input type="text" class="form-control form-control-sm" id="axiom" v-model="axiom">
@@ -36,9 +39,13 @@
 
 <script>
 import LSystem from '../scripts/L-system';
+import draggable from 'vuedraggable'
 
 export default {
   name: 'Menu',
+  components: {
+    draggable
+  },
   data() {
     return {
       axiom: "",
@@ -47,7 +54,8 @@ export default {
       angle: 90,
       line: 20,
       iterations: 1,
-      LSystem: new LSystem()
+      LSystem: new LSystem(),
+      myArray: [{name: 'F', id: 'f'}, {name: '+', id: 'p'}, {name: '-', id: 'm'}],
     }
   },
   methods: {
