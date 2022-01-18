@@ -1,20 +1,52 @@
 <template>
   <div class="menu bg-light shadow">
-    <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
-      <span v-for="element in myArray" class="border rounded m-1" :key="element.id">{{element.name}}</span>
-    </draggable>
+    <label class="form-label-sm small">Options</label>
+    <div @drop="setCurrentlyOver('options')">
+      <draggable v-model="options" :sort="false" :group="{ name: 'rules', pull: 'clone', put: false }" @start="onStart">
+        <span v-for="element in options" :key="element.id" class="border rounded m-1"><div class="item text-center">{{element.name}}</div></span>
+      </draggable>
+    </div>
     <label for="axiom" class="form-label-sm small">Axiom</label>
-    <div class="input-group">
-      <input type="text" class="form-control form-control-sm" id="axiom" v-model="axiom">
+    <div class="axiomContainer" @drop="setCurrentlyOver('axiom')" id="axiom">
+      <draggable v-model="axiom" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+        <span v-for="(element, index) in axiom" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+      </draggable>
     </div>
     <label for="rule" class="form-label-sm small">Rules</label>
-    <div class="row m-0">
-      <div class="col-2 p-0">
-        <input type="text" class="form-control form-control-sm" id="ruleKey" v-model="ruleKey">
+    <div class="ruleContainer">
+      <div class="ruleKey" id="ruleKey1"> 
+        <draggable v-model="ruleKey1" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+          <span v-for="(element, index) in ruleKey1" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
       </div>
-      <div class="col-1 p-0"></div>
-      <div class="col-9 p-0">
-        <input type="text" class="form-control form-control-sm" id="rule" v-model="rule">
+      <div class="rule" id="rule1"> 
+        <draggable v-model="rule1" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+          <span v-for="(element, index) in rule1" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+    </div>
+    <div class="ruleContainer">
+      <div class="ruleKey" id="ruleKey2"> 
+        <draggable v-model="ruleKey2" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+          <span v-for="(element, index) in ruleKey2" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+      <div class="rule" id="rule2"> 
+        <draggable v-model="rule2" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+          <span v-for="(element, index) in rule2" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+    </div>
+    <div class="ruleContainer">
+      <div class="ruleKey" id="ruleKey3"> 
+        <draggable v-model="ruleKey3" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+          <span v-for="(element, index) in ruleKey3" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+      <div class="rule" id="rule3"> 
+        <draggable v-model="rule3" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+          <span v-for="(element, index) in rule3" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
       </div>
     </div>
     <label for="angle" class="form-label-sm small">Angle</label>
@@ -48,14 +80,20 @@ export default {
   },
   data() {
     return {
-      axiom: "",
-      ruleKey: "",
-      rule: "",
+      options: [{name: 'F', id: 'f'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}],
+      axiom: [],
+      ruleKey1: [],
+      rule1: [],
+      ruleKey2: [],
+      rule2: [],
+      ruleKey3: [],
+      rule3: [],
       angle: 90,
       line: 20,
       iterations: 1,
       LSystem: new LSystem(),
-      myArray: [{name: 'F', id: 'f'}, {name: '+', id: 'p'}, {name: '-', id: 'm'}],
+      drop: "",
+      drag: "",
     }
   },
   methods: {
@@ -77,6 +115,106 @@ export default {
     draw() {
       let result = this.LSystem.computeSystem(this.axiom, this.rules, this.iterations);
       this.turtle.draw(result, this.line, this.angle);
+    },
+    onEnd(event) {
+      //delete both brackets
+      if (this.drop === 'options') {
+        this[event.to.parentElement.id].splice(event.newDraggableIndex, 1)
+        let bracketIndex = null
+        if (this.drag === "[") {
+          let lb = 0
+          for (let i = event.oldDraggableIndex; i < this[event.from.parentElement.id].length; i++) {
+            if (this[event.from.parentElement.id][i].id === "lb") {
+              lb++
+            } else if (this[event.from.parentElement.id][i].id === "rb") {
+              if (lb === 0) { 
+                bracketIndex = i
+                break;
+              } else {
+                lb--
+              }
+            }
+          }
+        } else if (this.drag === "]") {
+          let rb = 0
+          for (let i = event.oldDraggableIndex - 1; i > -1; i--) {
+            if (this[event.from.parentElement.id][i].id === "rb") {
+              rb++
+            } else if (this[event.from.parentElement.id][i].id === "lb") {
+              if (rb === 0) {
+                bracketIndex = i
+                break;
+              } else {
+                rb--
+              }
+            }
+          }
+        } 
+        if (bracketIndex !== null) {
+          this[event.from.parentElement.id].splice(bracketIndex, 1)
+        }
+      }
+      this.drop = ""
+    },
+    setCurrentlyOver(currentlyOver) {
+      this.drop = currentlyOver
+    },
+    onStart(event) {
+      this.drag = event.item.innerText
+    },
+    onAdd(event) {
+      //add left and right bracket
+      if (this.drag === "[ ]") {
+        this[event.to.parentElement.id].splice(event.newIndex, 1)
+        this[event.to.parentElement.id].splice(event.newIndex, 0, {name: "[", id: "lb"})
+        this[event.to.parentElement.id].splice(event.newIndex + 1, 0, {name: "]", id: "rb"})
+      }
+    },
+    onPutRule(to) {
+      //allow add only 1 option
+      if (to.el.children.length < 1) {
+        //allow add only valid option
+        if (this.drag === "F") {
+          //allow add only yet undefined option
+          let num = 0
+          this.ruleKey1?.[0]?.name === this.drag ? num++ : null;
+          this.ruleKey2?.[0]?.name === this.drag ? num++ : null;
+          this.ruleKey3?.[0]?.name === this.drag ? num++ : null;
+          if (num === 0) {
+            return true
+          }
+        }
+      }
+      return false;
+    },
+    onPut() {
+      if (this.drag === "[" || this.drag === "]") {
+        return false
+      }
+      return true
+    },
+    onUpdate(event) {
+      //prevent swaping brackets
+      if ((this.drag === "[" || this.drag === "]") && this.drop !== "options") {
+        let lb = 0
+        let rb = 0
+        for (let i = 0; i < this[event.to.parentElement.id].length; i++) {
+          if (this[event.to.parentElement.id][i].id === "lb") {
+            lb++
+          } else if (this[event.to.parentElement.id][i].id === "rb") {
+            rb++
+          }
+          if (rb > lb) {
+            this[event.to.parentElement.id].splice(event.newIndex, 1)
+            if (event.clone.innerText === "[") {
+              this[event.to.parentElement.id].splice(event.oldIndex, 0, {name: "[", id: "lb"})
+            } else {
+              this[event.to.parentElement.id].splice(event.oldIndex, 0, {name: "]", id: "rb"})
+            }
+            break
+          }
+        }
+      } 
     }
   },
   computed: {
@@ -91,11 +229,50 @@ export default {
 </script>
 
 <style scoped>
+.axiomContainer {
+  border: 1px solid #ced4da;
+  border-radius: 0.2rem;
+  min-height: calc(1.5em + 0.5rem + 2px);
+  font-size: .875rem;
+  background-color: #fff;
+  padding: 0.25rem 0.5rem;
+}
+
+.ruleContainer {
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 0.2rem;
+  font-size: .875rem;
+  height: calc(1.5em + 0.5rem + 2px);
+  background-color: #fff;
+}
+
+.ruleKey {
+  float: left;
+  display: inline-block;
+  min-height: calc(1.5em + 0.5rem);
+  width: 2.5em;
+  border-right: 1px solid #ced4da;
+  padding: 0.25rem 0.5rem;
+}
+
+.rule {
+  float: right;
+  min-height: calc(1.5em + 0.5rem);
+  padding: 0.25rem 0.5rem;
+  width: calc(100% - 2.5em);
+}
+
+.item {
+  display: inline-block;
+  width: 1em;
+}
+
 .menu {
   z-index: 0;
   position: relative;
   float: left;
-  width: 280px;
+  width: 300px;
   height: calc(100vh - 50px);
   padding: 10px;
 }
