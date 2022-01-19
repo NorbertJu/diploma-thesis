@@ -49,17 +49,23 @@
         </draggable>
       </div>
     </div>
-    <label for="angle" class="form-label-sm small">Angle</label>
-    <div class="input-group">
-      <input type="text" class="form-control form-control-sm" id="angle" v-model="angle">
+    <label for="length" class="form-label-sm small">Length: <span class="smal text-primary">{{length}}</span></label>
+    <div class="slider"> 
+      <div class="min small">0</div>
+      <input type="range" class="form-range" min="0" max="100" step="1" id="length" v-model="length">
+      <div class="max small">100</div>
     </div>
-    <label for="axiom" class="form-label-sm small">Line</label>
-    <div class="input-group">
-      <input type="text" class="form-control form-control-sm" id="line" v-model="line">
+    <label for="angle" class="form-label-sm small">Angle: <span class="smal text-primary">{{angle}}</span></label>
+    <div class="slider"> 
+      <div class="min small">0</div>
+      <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
+      <div class="max small">180</div>
     </div>
-    <label for="axiom" class="form-label-sm small">Iterations</label>
-    <div class="input-group">
-      <input type="text" class="form-control form-control-sm" id="iterations" v-model="iterations">
+    <label for="iterations" class="form-label-sm small">Iterations: <span class="smal text-primary">{{iterations}}</span></label>
+    <div class="slider"> 
+      <div class="min small">0</div>
+      <input type="range" class="form-range" min="0" max="10" step="1" id="iterations" v-model="iterations">
+      <div class="max small">&nbsp;10</div>
     </div>
     <div class="row justify-content-evenly mt-3">
       <button v-on:click="draw()" class="btn btn-outline-primary btn-sm col-3">Draw</button>
@@ -80,7 +86,7 @@ export default {
   },
   data() {
     return {
-      options: [{name: 'F', id: 'f'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}],
+      options: [{name: 'F', id: 'F'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}],
       axiom: [],
       ruleKey1: [],
       rule1: [],
@@ -89,7 +95,7 @@ export default {
       ruleKey3: [],
       rule3: [],
       angle: 90,
-      line: 20,
+      length: 20,
       iterations: 1,
       LSystem: new LSystem(),
       drop: "",
@@ -113,8 +119,24 @@ export default {
       this.turtle.canvas.clear();
     },
     draw() {
-      let result = this.LSystem.computeSystem(this.axiom, this.rules, this.iterations);
-      this.turtle.draw(result, this.line, this.angle);
+      let result = this.LSystem.computeSystem(this.getAxiom(), this.getRules(), this.iterations);
+      this.turtle.draw(result, this.length, this.angle);
+    },
+    getRules() {
+      let result = {}
+      if (this.ruleKey1?.[0]?.name) {
+        result[this.ruleKey1?.[0]?.name] = this.rule1.map(item => item.name)
+      }
+      if (this.ruleKey2?.[0]?.name) {
+        result[this.ruleKey2?.[0]?.name] = this.rule2.map(item => item.name)
+      }
+      if (this.ruleKey3?.[0]?.name) {
+        result[this.ruleKey3?.[0]?.name] = this.rule3.map(item => item.name)
+      }
+      return result;
+    },
+    getAxiom() {
+      return this.axiom.map(item => item.name)
     },
     onEnd(event) {
       //delete both brackets
@@ -220,9 +242,6 @@ export default {
   computed: {
     turtle() {
       return this.$store.state.turtle;
-    },
-    rules() {
-      return {[this.ruleKey]: this.rule};
     }
   }
 }
@@ -275,5 +294,21 @@ export default {
   width: 300px;
   height: calc(100vh - 50px);
   padding: 10px;
+}
+
+.slider {
+  text-align: center;
+}
+
+.slider .min {
+  float: left;
+}
+
+.slider .max {
+  float: right;
+}
+
+.slider input {
+  width: 80%;
 }
 </style>
