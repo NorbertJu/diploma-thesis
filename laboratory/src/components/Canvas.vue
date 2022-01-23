@@ -130,7 +130,7 @@ export default {
   padding: 20px;
   position: relative;
   float: left;
-  width: calc(100% - 300px);
+  width: calc(100% - 400px);
   height: calc(100% - 50px);
 }
 

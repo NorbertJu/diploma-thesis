@@ -262,7 +262,7 @@ export default {
   border: 1px solid #ced4da;
   border-radius: 0.2rem;
   font-size: .875rem;
-  height: calc(1.5em + 0.5rem + 2px);
+  min-height: calc(1.5em + 0.5rem + 2px);
   background-color: #fff;
 }
 
@@ -291,7 +291,7 @@ export default {
   z-index: 0;
   position: relative;
   float: left;
-  width: 300px;
+  width: 400px;
   height: calc(100vh - 50px);
   padding: 10px;
 }
