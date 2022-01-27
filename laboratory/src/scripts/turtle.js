@@ -5,7 +5,6 @@ export default class Turtle {
     this.reset();
     this.pen = true;
     this.visible = true;
-    this.color = {r:0, g:0, b:0, a:1}
   }
 
   set X(value) {
@@ -24,6 +23,14 @@ export default class Turtle {
       value += 0.5;
     }
     return value;
+  }
+
+  forwardPenUp(distance) {
+    let cosAngle = Math.cos((this.heading * Math.PI) / 180.0);
+    let sinAngle = Math.sin((this.heading * Math.PI) / 180.0);
+    let newX = this.x + cosAngle * distance;
+    let newY = this.y - sinAngle * distance;
+    this.goTo(newX, newY);
   }
 
   fd(distance) {
@@ -69,7 +76,7 @@ export default class Turtle {
 
   penSize(width) {
     this.width = width;
-    this.canvas.penSize(width);
+    this.canvas.penSize = width;
   }
 
   seth(heading) {
@@ -81,6 +88,11 @@ export default class Turtle {
     this.seth(90);
   }
 
+  penColor(color) {
+    this.color = color;
+    this.canvas.penColor = color;
+  }
+
   checkPosition(x, y) {
     if (x < 0 || y < 0 || x > this.canvas.width() || y > this.canvas.height()) {
       this.visible = false;
@@ -89,20 +101,41 @@ export default class Turtle {
     }
   }
 
-  draw(system, line, angle) {
+  checkSizeDecrease(penSizeDecrease, penSize, branchOrder) {
+    if (penSize - penSizeDecrease * branchOrder > 1) {
+      return penSize - penSizeDecrease * branchOrder
+    }
+    return 1
+  }
+
+  draw(system, length, angle, penColor, penSize, penSizeDecrease) {
+    this.penColor(penColor)
+    this.penSize(penSize)
     let stack = [];
     for (let command of system) {
       switch(command) {
-        case "F": this.fd(line); break;
-        case "+": this.lt(angle); break;
-        case "-": this.rt(angle); break;
-        case "[": stack.push({x: this.x, y: this.y, h: this.heading}); break;
-        case "]": {
+        case "F": 
+          this.fd(length); 
+          break;
+        case "f": 
+          this.forwardPenUp(length); 
+          break;
+        case "+": 
+          this.lt(angle); 
+          break;
+        case "-": 
+          this.rt(angle); 
+          break;
+        case "[": 
+          stack.push({x: this.x, y: this.y, h: this.heading}); 
+          this.penSize(this.checkSizeDecrease(penSizeDecrease, penSize, stack.length))
+          break;
+        case "]": 
           let pos = stack.pop();
           this.goTo(pos.x, pos.y);
           this.seth(pos.h);
+          this.penSize(this.checkSizeDecrease(penSizeDecrease, penSize, stack.length))
           break;
-        }
       }
     }
   }

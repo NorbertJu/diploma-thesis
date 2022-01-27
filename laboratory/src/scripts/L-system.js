@@ -12,7 +12,7 @@ export default class LSystem {
   rewrite(word, rules) {
     let result = "";
     for (let char of word) {
-      result += rules[char] ? rules[char] : char;
+      result += rules[char] ? rules[char][Math.floor(Math.random() * rules[char].length)] : char;
     }
     return result;
   }

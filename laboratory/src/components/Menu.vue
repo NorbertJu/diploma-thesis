@@ -1,6 +1,10 @@
 <template>
   <div class="menu bg-light shadow">
-    <label class="form-label-sm small">Options</label>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="info bi bi-info-circle text-primary" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    </svg>
+    <label class="form-label-sm small">Alphabet</label>
     <div @drop="setCurrentlyOver('options')">
       <draggable v-model="options" :sort="false" :group="{ name: 'rules', pull: 'clone', put: false }" @start="onStart">
         <span v-for="element in options" :key="element.id" class="border rounded m-1"><div class="item text-center">{{element.name}}</div></span>
@@ -49,25 +53,73 @@
         </draggable>
       </div>
     </div>
-    <label for="length" class="form-label-sm small">Length: <span class="smal text-primary">{{length}}</span></label>
+    <div class="ruleContainer">
+      <div class="ruleKey" id="ruleKey4"> 
+        <draggable v-model="ruleKey4" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+          <span v-for="(element, index) in ruleKey4" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+      <div class="rule" id="rule4"> 
+        <draggable v-model="rule4" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+          <span v-for="(element, index) in rule4" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+    </div>
+    <div class="ruleContainer">
+      <div class="ruleKey" id="ruleKey5"> 
+        <draggable v-model="ruleKey5" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+          <span v-for="(element, index) in ruleKey5" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+      <div class="rule" id="rule5"> 
+        <draggable v-model="rule5" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+          <span v-for="(element, index) in rule5" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
+        </draggable>
+      </div>
+    </div>
+    <label for="length" class="form-label-sm small center">Length: <span class="smal text-primary">{{length}}</span></label>
     <div class="slider"> 
       <div class="min small">0</div>
-      <input type="range" class="form-range" min="0" max="100" step="1" id="length" v-model="length">
-      <div class="max small">100</div>
+      <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length">
+      <div class="max small">300</div>
     </div>
-    <label for="angle" class="form-label-sm small">Angle: <span class="smal text-primary">{{angle}}</span></label>
+    <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
     <div class="slider"> 
       <div class="min small">0</div>
       <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
       <div class="max small">180</div>
     </div>
-    <label for="iterations" class="form-label-sm small">Iterations: <span class="smal text-primary">{{iterations}}</span></label>
+    <label for="order" class="form-label-sm small center">Order: <span class="smal text-primary">{{order}}</span></label>
     <div class="slider"> 
       <div class="min small">0</div>
-      <input type="range" class="form-range" min="0" max="10" step="1" id="iterations" v-model="iterations">
-      <div class="max small">&nbsp;10</div>
+      <input type="range" class="form-range" min="0" max="20" step="1" id="order" v-model="order">
+      <div class="max small">&nbsp;20</div>
     </div>
-    <div class="row justify-content-evenly mt-3">
+    <div class="left-half">
+      <label for="penSize" class="form-label-sm small">Pen size: <span class="smal text-primary">{{penSize}}</span></label>
+      <div class="slider"> 
+        <div class="min small">1</div>
+        <input type="range" class="form-range" min="1" max="15" step="1" id="penSize" v-model="penSize">
+        <div class="max small">15</div>
+      </div>
+    </div>
+    <div class="right-half">
+      <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="smal text-primary">{{penSizeDecrease}}</span></label>
+      <div class="slider"> 
+        <div class="min small">0</div>
+        <input type="range" class="form-range" min="0" max="5" step="1" id="penSizeDecrease" v-model="penSizeDecrease">
+        <div class="max small">5</div>
+      </div>
+    </div>
+    <div class="left-half">
+      <label for="penColor" class="form-label-sm small">Pen color: </label>
+      <input type="color" id="penColor" class="color" v-model="penColor">
+    </div>
+    <div class="right-half">
+      <label for="backgroundColor" class="form-label-sm small">Background color: </label>
+      <input type="color" id="backgroundColor" class="color" v-model="newBGColor" @blur="changeBackgroundColor">
+    </div>
+    <div class="row justify-content-evenly pt-3">
       <button v-on:click="draw()" class="btn btn-outline-primary btn-sm col-3">Draw</button>
       <button v-on:click="reset()" class="btn btn-outline-secondary btn-sm col-3">Reset</button>
       <button v-on:click="clear()" class="btn btn-outline-danger btn-sm col-3">Clear</button>
@@ -84,9 +136,13 @@ export default {
   components: {
     draggable
   },
+  created() {
+    this.$root.$on('getSystem', this.saveSystem)
+    this.$root.$on('loadSystem', this.loadSystem)
+  },
   data() {
     return {
-      options: [{name: 'F', id: 'F'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}],
+      options: [{name: 'F', id: 'F'}, {name: 'f', id: 'f'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}],
       axiom: [],
       ruleKey1: [],
       rule1: [],
@@ -94,12 +150,21 @@ export default {
       rule2: [],
       ruleKey3: [],
       rule3: [],
-      angle: 90,
-      length: 20,
-      iterations: 1,
+      ruleKey4: [],
+      rule4: [],
+      ruleKey5: [],
+      rule5: [],
+      angle: "20",
+      length: "50",
+      order: "0",
+      penSize: "1",
+      penSizeDecrease: "0",
       LSystem: new LSystem(),
       drop: "",
       drag: "",
+      backgroundColor: "#ffffff",
+      newBGColor: "#ffffff",
+      penColor: "#000000"
     }
   },
   methods: {
@@ -116,22 +181,49 @@ export default {
       this.turtle.reset();
     },
     clear() {
-      this.turtle.canvas.clear();
+      this.canvas.clear();
+      this.canvas.color(this.backgroundColor)
     },
     draw() {
-      let result = this.LSystem.computeSystem(this.getAxiom(), this.getRules(), this.iterations);
-      this.turtle.draw(result, this.length, this.angle);
+      let result = this.LSystem.computeSystem(this.getAxiom(), this.getRules(), this.order);
+      this.turtle.draw(result, this.length, this.angle, this.penColor, this.penSize, this.penSizeDecrease);
     },
     getRules() {
       let result = {}
       if (this.ruleKey1?.[0]?.name) {
-        result[this.ruleKey1?.[0]?.name] = this.rule1.map(item => item.name)
+        if (result[this.ruleKey1?.[0]?.name]) {
+          result[this.ruleKey1?.[0]?.name].push(this.rule1.map(item => item.name))
+        } else {
+          result[this.ruleKey1?.[0]?.name] = [this.rule1.map(item => item.name)]
+        }
       }
       if (this.ruleKey2?.[0]?.name) {
-        result[this.ruleKey2?.[0]?.name] = this.rule2.map(item => item.name)
+        if (result[this.ruleKey2?.[0]?.name]) {
+          result[this.ruleKey2?.[0]?.name].push(this.rule2.map(item => item.name))
+        } else {
+          result[this.ruleKey2?.[0]?.name] = [this.rule2.map(item => item.name)]
+        }
       }
       if (this.ruleKey3?.[0]?.name) {
-        result[this.ruleKey3?.[0]?.name] = this.rule3.map(item => item.name)
+        if (result[this.ruleKey3?.[0]?.name]) {
+          result[this.ruleKey3?.[0]?.name].push(this.rule3.map(item => item.name))
+        } else {
+          result[this.ruleKey3?.[0]?.name] = [this.rule3.map(item => item.name)]
+        }
+      }
+      if (this.ruleKey4?.[0]?.name) {
+        if (result[this.ruleKey4?.[0]?.name]) {
+          result[this.ruleKey4?.[0]?.name].push(this.rule4.map(item => item.name))
+        } else {
+          result[this.ruleKey4?.[0]?.name] = [this.rule4.map(item => item.name)]
+        }
+      }
+      if (this.ruleKey5?.[0]?.name) {
+        if (result[this.ruleKey5?.[0]?.name]) {
+          result[this.ruleKey5?.[0]?.name].push(this.rule5.map(item => item.name))
+        } else {
+          result[this.ruleKey5?.[0]?.name] = [this.rule5.map(item => item.name)]
+        }
       }
       return result;
     },
@@ -196,15 +288,8 @@ export default {
       //allow add only 1 option
       if (to.el.children.length < 1) {
         //allow add only valid option
-        if (this.drag === "F") {
-          //allow add only yet undefined option
-          let num = 0
-          this.ruleKey1?.[0]?.name === this.drag ? num++ : null;
-          this.ruleKey2?.[0]?.name === this.drag ? num++ : null;
-          this.ruleKey3?.[0]?.name === this.drag ? num++ : null;
-          if (num === 0) {
-            return true
-          }
+        if (this.drag === "F" || this.drag === "f") {
+          return true
         }
       }
       return false;
@@ -237,11 +322,49 @@ export default {
           }
         }
       } 
+    },
+    changeBackgroundColor() {
+      if (this.newBGColor !== this.backgroundColor) {
+        this.canvas.color(this.newBGColor)
+        this.backgroundColor = this.newBGColor
+      }
+    },
+    saveSystem() {
+      let system = {
+        axiom: this.axiom,
+        ruleKey1: this.ruleKey1,
+        rule1: this.rule1,
+        ruleKey2: this.ruleKey2,
+        rule2: this.rule2,
+        ruleKey3: this.ruleKey3,
+        rule3: this.rule3,
+        ruleKey4: this.ruleKey4,
+        rule4: this.rule4,
+        ruleKey5: this.ruleKey5,
+        rule5: this.rule5,
+        length: this.length,
+        angle: this.angle,
+        order: this.order,
+        penSize: this.penSize,
+        penSizeDecrease: this.penSizeDecrease,
+        penColor: this.penColor
+      }
+      this.$root.$emit('saveSystem', system)
+    },
+    loadSystem(system) {
+      for (let key in system) {
+        if (this.$data.hasOwnProperty(key) && key !== "backgroundColor" && key !== "newBGColor") {
+          this[key] = system[key]
+        }
+      }
     }
   },
   computed: {
     turtle() {
       return this.$store.state.turtle;
+    },
+    canvas() {
+      return this.$store.state.canvas;
     }
   }
 }
@@ -287,13 +410,24 @@ export default {
   width: 1em;
 }
 
+.item:hover {
+  cursor: grab;
+}
+
 .menu {
   z-index: 0;
   position: relative;
   float: left;
   width: 400px;
-  height: calc(100vh - 50px);
+  height: calc(100% - 50px);
   padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+label.center {
+  text-align: center;
+  width: 100%;
 }
 
 .slider {
@@ -311,4 +445,36 @@ export default {
 .slider input {
   width: 80%;
 }
+
+.info {
+  float: right;
+}
+
+.info:hover {
+  cursor: help;
+}
+
+.left-half {
+  float: left;
+  width: 45%;
+  text-align: center;
+}
+
+.right-half {
+  float: right;
+  width: 50%;
+  text-align: center;
+}
+
+.color {
+  display: inline-block;
+  margin: 0 5px 0 5px;
+  width: 30px;
+  height: 20px;
+}
+
+.color:hover {
+  cursor: pointer;
+}
+
 </style>

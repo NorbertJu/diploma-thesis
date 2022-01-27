@@ -5,6 +5,7 @@ export default class Canvas {
     this.context = canvas.getContext("2d");
     this.canvas.width = canvas.offsetWidth * scale;
     this.canvas.height = canvas.offsetHeight * scale;
+    this.color("#ffffff");
     this.context.scale(scale,scale);
   }
 
@@ -13,9 +14,9 @@ export default class Canvas {
     this.context.lineTo(toX, toY);
   }
 
-  color(colorName) {
-    this.context.fillStyle = colorName;
-    this.context.fillRect(0, 0, this.width(), this.height());
+  color(color) {
+    this.context.fillStyle = color;
+    this.context.fillRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
   }
 
   width() {
@@ -36,6 +37,14 @@ export default class Canvas {
 
   get penSize() {
     return this.context.lineWidth;
+  }
+
+  set penColor(color) {
+    this.context.strokeStyle = color;
+  }
+
+  get penColor() {
+    return this.context.strokeStyle;
   }
 
 }
