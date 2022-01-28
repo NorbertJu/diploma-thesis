@@ -12,67 +12,67 @@
     </div>
     <label for="axiom" class="form-label-sm small">Axiom</label>
     <div class="axiomContainer" @drop="setCurrentlyOver('axiom')" id="axiom">
-      <draggable v-model="axiom" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+      <draggable v-model="axiom" :group="{ name: 'rules', pull: true, put: onPutAxiom }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
         <span v-for="(element, index) in axiom" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
       </draggable>
     </div>
     <label for="rule" class="form-label-sm small">Rules</label>
     <div class="ruleContainer">
       <div class="ruleKey" id="ruleKey1"> 
-        <draggable v-model="ruleKey1" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+        <draggable v-model="ruleKey1" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey1" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
       <div class="rule" id="rule1"> 
-        <draggable v-model="rule1" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+        <draggable v-model="rule1" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule1" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
     </div>
     <div class="ruleContainer">
       <div class="ruleKey" id="ruleKey2"> 
-        <draggable v-model="ruleKey2" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+        <draggable v-model="ruleKey2" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey2" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
       <div class="rule" id="rule2"> 
-        <draggable v-model="rule2" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+        <draggable v-model="rule2" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule2" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
     </div>
     <div class="ruleContainer">
       <div class="ruleKey" id="ruleKey3"> 
-        <draggable v-model="ruleKey3" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+        <draggable v-model="ruleKey3" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey3" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
       <div class="rule" id="rule3"> 
-        <draggable v-model="rule3" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+        <draggable v-model="rule3" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule3" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
     </div>
     <div class="ruleContainer">
       <div class="ruleKey" id="ruleKey4"> 
-        <draggable v-model="ruleKey4" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+        <draggable v-model="ruleKey4" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey4" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
       <div class="rule" id="rule4"> 
-        <draggable v-model="rule4" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+        <draggable v-model="rule4" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule4" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
     </div>
     <div class="ruleContainer">
       <div class="ruleKey" id="ruleKey5"> 
-        <draggable v-model="ruleKey5" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @start="onStart">
+        <draggable v-model="ruleKey5" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey5" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
       <div class="rule" id="rule5"> 
-        <draggable v-model="rule5" :group="{ name: 'rules', pull: true, put: onPut }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
+        <draggable v-model="rule5" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule5" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
       </div>
@@ -83,11 +83,43 @@
       <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length">
       <div class="max small">300</div>
     </div>
+    <div class="left-half">
+      <label for="faultyStep" class="form-label-sm small">Faulty step: <span class="smal text-primary">{{faultyStep}}%</span></label>
+      <div class="slider"> 
+        <div class="min small">0</div>
+        <input type="range" class="form-range" min="0" max="50" step="1" id="faultyStep" v-model="faultyStep">
+        <div class="max small">50</div>
+      </div>
+    </div>
+    <div class="right-half">
+      <label for="probabilityFaultyStep" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyStep}}%</span></label>
+      <div class="slider"> 
+        <div class="min small">1</div>
+        <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyStep" v-model="probabilityFaultyStep">
+        <div class="max small">100</div>
+      </div>
+    </div>
     <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
     <div class="slider"> 
       <div class="min small">0</div>
       <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
       <div class="max small">180</div>
+    </div>
+    <div class="left-half">
+      <label for="faultyTurn" class="form-label-sm small">Faulty turn: <span class="smal text-primary">{{faultyTurn}}</span></label>
+      <div class="slider"> 
+        <div class="min small">0</div>
+        <input type="range" class="form-range" min="0" max="50" step="1" id="faultyTurn" v-model="faultyTurn">
+        <div class="max small">50</div>
+      </div>
+    </div>
+    <div class="right-half">
+      <label for="probabilityFaultyTurn" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyTurn}}%</span></label>
+      <div class="slider"> 
+        <div class="min small">1</div>
+        <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyTurn" v-model="probabilityFaultyTurn">
+        <div class="max small">100</div>
+      </div>
     </div>
     <label for="order" class="form-label-sm small center">Order: <span class="smal text-primary">{{order}}</span></label>
     <div class="slider"> 
@@ -119,6 +151,8 @@
       <label for="backgroundColor" class="form-label-sm small">Background color: </label>
       <input type="color" id="backgroundColor" class="color" v-model="newBGColor" @blur="changeBackgroundColor">
     </div>
+    
+    
     <div class="row justify-content-evenly pt-3">
       <button v-on:click="draw()" class="btn btn-outline-primary btn-sm col-3">Draw</button>
       <button v-on:click="reset()" class="btn btn-outline-secondary btn-sm col-3">Reset</button>
@@ -142,7 +176,7 @@ export default {
   },
   data() {
     return {
-      options: [{name: 'F', id: 'F'}, {name: 'f', id: 'f'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}],
+      options: [{name: 'F', id: 'F'}, {name: 'f', id: 'f'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}, {name: 'P', id: 'P'}, {name: 'Q', id: 'Q'}, {name: 'R', id: 'R'}, {name: 'S', id: 'S'}, {name: 'T', id: 'T'}],
       axiom: [],
       ruleKey1: [],
       rule1: [],
@@ -164,7 +198,11 @@ export default {
       drag: "",
       backgroundColor: "#ffffff",
       newBGColor: "#ffffff",
-      penColor: "#000000"
+      penColor: "#000000",
+      faultyTurn: "0",
+      probabilityFaultyTurn: "50",
+      faultyStep: "0",
+      probabilityFaultyStep: "50"
     }
   },
   methods: {
@@ -186,7 +224,15 @@ export default {
     },
     draw() {
       let result = this.LSystem.computeSystem(this.getAxiom(), this.getRules(), this.order);
-      this.turtle.draw(result, this.length, this.angle, this.penColor, this.penSize, this.penSizeDecrease);
+      this.turtle.draw(
+        result, 
+        this.length, 
+        this.angle, 
+        this.penColor, 
+        this.penSize, 
+        this.penSizeDecrease,
+        this.getFaults()
+      );
     },
     getRules() {
       let result = {}
@@ -229,6 +275,18 @@ export default {
     },
     getAxiom() {
       return this.axiom.map(item => item.name)
+    },
+    getFaults() {
+      return {
+        step: {
+          fault: this.faultyStep,
+          probability: this.probabilityFaultyStep
+        },
+        turn: {
+          fault: this.faultyTurn,
+          probability: this.probabilityFaultyTurn
+        }
+      }
     },
     onEnd(event) {
       //delete both brackets
@@ -284,17 +342,35 @@ export default {
         this[event.to.parentElement.id].splice(event.newIndex + 1, 0, {name: "]", id: "rb"})
       }
     },
-    onPutRule(to) {
+    onPutRuleKey(to) {
       //allow add only 1 option
       if (to.el.children.length < 1) {
         //allow add only valid option
-        if (this.drag === "F" || this.drag === "f") {
+        if (this.drag === "F" || this.drag === "f" || this.drag === "P" || this.drag === "Q" || this.drag === "R" || this.drag === "S" || this.drag === "T") {
           return true
         }
       }
       return false;
     },
-    onPut() {
+    onPutRule(to) {
+      if (to.el.children.length >= 20) {
+        return false
+      }
+      if (to.el.children.length >= 19 && this.drag === "[ ]") {
+        return false
+      }
+      if (this.drag === "[" || this.drag === "]") {
+        return false
+      }
+      return true
+    },
+    onPutAxiom(to) {
+      if (to.el.children.length >= 22) {
+        return false
+      }
+      if (to.el.children.length >= 21 && this.drag === "[ ]") {
+        return false
+      }
       if (this.drag === "[" || this.drag === "]") {
         return false
       }
@@ -347,7 +423,11 @@ export default {
         order: this.order,
         penSize: this.penSize,
         penSizeDecrease: this.penSizeDecrease,
-        penColor: this.penColor
+        penColor: this.penColor,
+        faultyTurn: this.faultyTurn,
+        probabilityFaultyTurn: this.probabilityFaultyTurn,
+        faultyStep: this.faultyStep,
+        probabilityFaultyStep: this.probabilityFaultyStep
       }
       this.$root.$emit('saveSystem', system)
     },
@@ -418,7 +498,7 @@ export default {
   z-index: 0;
   position: relative;
   float: left;
-  width: 400px;
+  width: 404px;
   height: calc(100% - 50px);
   padding: 10px;
   overflow-y: auto;

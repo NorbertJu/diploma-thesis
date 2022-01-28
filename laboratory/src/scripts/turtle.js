@@ -101,40 +101,58 @@ export default class Turtle {
     }
   }
 
-  checkSizeDecrease(penSizeDecrease, penSize, branchOrder) {
+  computeSizeDecrease(penSizeDecrease, penSize, branchOrder) {
     if (penSize - penSizeDecrease * branchOrder > 1) {
       return penSize - penSizeDecrease * branchOrder
     }
     return 1
   }
 
-  draw(system, length, angle, penColor, penSize, penSizeDecrease) {
+  computeFaultyStep(length, faultyStep) {
+    if (faultyStep.fault > 0) {
+      if (Math.floor(Math.random() * 100) + 1 <= faultyStep.probability) {
+        return (100 - (Math.floor(Math.random() * faultyStep.fault) + 1)) / 100 * length
+      }
+    }
+    return length
+  }
+
+  computeFaultyTurn(angle, faultyTurn) {
+    if (faultyTurn.fault > 0) {
+      if (Math.floor(Math.random() * 100) + 1 <= faultyTurn.probability) {
+        return parseInt(angle) + (Math.round(Math.random()) * 2 - 1) * (Math.floor(Math.random() * faultyTurn.fault) + 1)
+      }
+    }
+    return angle
+  }
+
+  draw(system, length, angle, penColor, penSize, penSizeDecrease, faults) {
     this.penColor(penColor)
     this.penSize(penSize)
     let stack = [];
     for (let command of system) {
       switch(command) {
         case "F": 
-          this.fd(length); 
+          this.fd(this.computeFaultyStep(length, faults.step)); 
           break;
         case "f": 
-          this.forwardPenUp(length); 
+          this.forwardPenUp(this.computeFaultyStep(length, faults.step)); 
           break;
         case "+": 
-          this.lt(angle); 
+          this.lt(this.computeFaultyTurn(angle, faults.turn)); 
           break;
         case "-": 
-          this.rt(angle); 
+          this.rt(this.computeFaultyTurn(angle, faults.turn)); 
           break;
         case "[": 
           stack.push({x: this.x, y: this.y, h: this.heading}); 
-          this.penSize(this.checkSizeDecrease(penSizeDecrease, penSize, stack.length))
+          this.penSize(this.computeSizeDecrease(penSizeDecrease, penSize, stack.length))
           break;
         case "]": 
           let pos = stack.pop();
           this.goTo(pos.x, pos.y);
           this.seth(pos.h);
-          this.penSize(this.checkSizeDecrease(penSizeDecrease, penSize, stack.length))
+          this.penSize(this.computeSizeDecrease(penSizeDecrease, penSize, stack.length))
           break;
       }
     }
