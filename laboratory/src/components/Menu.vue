@@ -77,87 +77,178 @@
         </draggable>
       </div>
     </div>
-    <label for="length" class="form-label-sm small center">Length: <span class="smal text-primary">{{length}}</span></label>
-    <div class="slider"> 
-      <div class="min small">0</div>
-      <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length">
-      <div class="max small">300</div>
-    </div>
-    <div class="left-half">
-      <label for="faultyStep" class="form-label-sm small">Faulty step: <span class="smal text-primary">{{faultyStep}}%</span></label>
-      <div class="slider"> 
-        <div class="min small">0</div>
-        <input type="range" class="form-range" min="0" max="50" step="1" id="faultyStep" v-model="faultyStep">
-        <div class="max small">50</div>
-      </div>
-    </div>
-    <div class="right-half">
-      <label for="probabilityFaultyStep" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyStep}}%</span></label>
-      <div class="slider"> 
-        <div class="min small">1</div>
-        <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyStep" v-model="probabilityFaultyStep">
-        <div class="max small">100</div>
-      </div>
-    </div>
-    <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
-    <div class="slider"> 
-      <div class="min small">0</div>
-      <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
-      <div class="max small">180</div>
-    </div>
-    <div class="left-half">
-      <label for="faultyTurn" class="form-label-sm small">Faulty turn: <span class="smal text-primary">{{faultyTurn}}</span></label>
-      <div class="slider"> 
-        <div class="min small">0</div>
-        <input type="range" class="form-range" min="0" max="50" step="1" id="faultyTurn" v-model="faultyTurn">
-        <div class="max small">50</div>
-      </div>
-    </div>
-    <div class="right-half">
-      <label for="probabilityFaultyTurn" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyTurn}}%</span></label>
-      <div class="slider"> 
-        <div class="min small">1</div>
-        <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyTurn" v-model="probabilityFaultyTurn">
-        <div class="max small">100</div>
-      </div>
-    </div>
-    <label for="order" class="form-label-sm small center">Order: <span class="smal text-primary">{{order}}</span></label>
-    <div class="slider"> 
-      <div class="min small">0</div>
-      <input type="range" class="form-range" min="0" max="20" step="1" id="order" v-model="order">
-      <div class="max small">&nbsp;20</div>
-    </div>
-    <div class="left-half">
-      <label for="penSize" class="form-label-sm small">Pen size: <span class="smal text-primary">{{penSize}}</span></label>
-      <div class="slider"> 
-        <div class="min small">1</div>
-        <input type="range" class="form-range" min="1" max="15" step="1" id="penSize" v-model="penSize">
-        <div class="max small">15</div>
-      </div>
-    </div>
-    <div class="right-half">
-      <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="smal text-primary">{{penSizeDecrease}}</span></label>
-      <div class="slider"> 
-        <div class="min small">0</div>
-        <input type="range" class="form-range" min="0" max="5" step="1" id="penSizeDecrease" v-model="penSizeDecrease">
-        <div class="max small">5</div>
-      </div>
-    </div>
-    <div class="left-half">
-      <label for="penColor" class="form-label-sm small">Pen color: </label>
-      <input type="color" id="penColor" class="color" v-model="penColor">
-    </div>
-    <div class="right-half">
-      <label for="backgroundColor" class="form-label-sm small">Background color: </label>
-      <input type="color" id="backgroundColor" class="color" v-model="newBGColor" @blur="changeBackgroundColor">
-    </div>
-    
-    
-    <div class="row justify-content-evenly pt-3">
+    <div class="row justify-content-evenly pt-3 pb-3">
       <button v-on:click="draw()" class="btn btn-outline-primary btn-sm col-3">Draw</button>
       <button v-on:click="reset()" class="btn btn-outline-secondary btn-sm col-3">Reset</button>
       <button v-on:click="clear()" class="btn btn-outline-danger btn-sm col-3">Clear</button>
-    </div>    
+    </div> 
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item">
+        <a class="nav-link small" v-bind:class="{ 'active': activeTab === 'general' }" href="#basic" v-on:click="changeActiveTab('general')">General</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link small" v-bind:class="{ 'active': activeTab === 'structures' }" href="#structures" v-on:click="changeActiveTab('structures')">Structures</a>
+      </li>
+    </ul>
+    <div v-if="activeTab === 'general'">
+      <label for="order" class="form-label-sm small center">Order: <span class="smal text-primary">{{order}}</span></label>
+      <div class="slider"> 
+        <div class="min small">0</div>
+        <input type="range" class="form-range" min="0" max="20" step="1" id="order" v-model="order">
+        <div class="max small">&nbsp;20</div>
+      </div>
+      <label for="length" class="form-label-sm small center">Length: <span class="smal text-primary">{{length}}</span></label>
+      <div class="slider"> 
+        <div class="min small">0</div>
+        <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length">
+        <div class="max small">300</div>
+      </div>
+      <div class="left-half">
+        <label for="faultyStep" class="form-label-sm small">Faulty step: <span class="smal text-primary">{{faultyStep}}%</span></label>
+        <div class="slider"> 
+          <div class="min small">0</div>
+          <input type="range" class="form-range" min="0" max="50" step="1" id="faultyStep" v-model="faultyStep">
+          <div class="max small">50</div>
+        </div>
+      </div>
+      <div class="right-half">
+        <label for="probabilityFaultyStep" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyStep}}%</span></label>
+        <div class="slider"> 
+          <div class="min small">1</div>
+          <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyStep" v-model="probabilityFaultyStep">
+          <div class="max small">100</div>
+        </div>
+      </div>
+      <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
+      <div class="slider"> 
+        <div class="min small">0</div>
+        <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
+        <div class="max small">180</div>
+      </div>
+      <div class="left-half">
+        <label for="faultyTurn" class="form-label-sm small">Faulty turn: <span class="smal text-primary">{{faultyTurn}}</span></label>
+        <div class="slider"> 
+          <div class="min small">0</div>
+          <input type="range" class="form-range" min="0" max="50" step="1" id="faultyTurn" v-model="faultyTurn">
+          <div class="max small">50</div>
+        </div>
+      </div>
+      <div class="right-half">
+        <label for="probabilityFaultyTurn" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyTurn}}%</span></label>
+        <div class="slider"> 
+          <div class="min small">1</div>
+          <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyTurn" v-model="probabilityFaultyTurn">
+          <div class="max small">100</div>
+        </div>
+      </div>
+      <div class="left-half">
+        <label for="penSize" class="form-label-sm small">Pen size: <span class="smal text-primary">{{penSize}}</span></label>
+        <div class="slider"> 
+          <div class="min small">1</div>
+          <input type="range" class="form-range" min="1" max="15" step="1" id="penSize" v-model="penSize">
+          <div class="max small">15</div>
+        </div>
+      </div>
+      <div class="right-half">
+        <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="smal text-primary">{{penSizeDecrease}}</span></label>
+        <div class="slider"> 
+          <div class="min small">0</div>
+          <input type="range" class="form-range" min="0" max="5" step="1" id="penSizeDecrease" v-model="penSizeDecrease">
+          <div class="max small">5</div>
+        </div>
+      </div>
+      <div class="left-half pt-2">
+        <label for="penColor" class="form-label-sm small">Pen color: </label>
+        <input type="color" id="penColor" class="color" v-model="penColor">
+      </div>
+      <div class="right-half pt-2">
+        <label for="backgroundColor" class="form-label-sm small">Background color: </label>
+        <input type="color" id="backgroundColor" class="color" v-model="newBGColor" @blur="changeBackgroundColor">
+      </div>
+    </div>
+    <div v-if="activeTab === 'structures'" class="structures">
+      <div class="structure">
+        <div class="form-check d-inline-block">
+          <input class="form-check-input" type="checkbox" id="leaf" v-model="leaf">
+          <label class="form-check-label" for="leaf">
+            Leaf
+          </label>
+          <input type="color" id="leafColor" class="color" v-model="leafColor">
+        </div>
+        <div>
+          <div class="left-half">
+            <label for="leafSize" class="form-label-sm small">Leaf Size: <span class="smal text-primary">{{getSize(leafSize)}}</span></label>
+            <div class="slider"> 
+              <div class="min small">auto</div>
+              <input type="range" class="form-range w-65" min="0" max="3" step="1" id="leafSize" v-model="leafSize">
+              <div class="max small">big</div>
+            </div>
+          </div>
+          <div class="right-half">
+            <label for="leafProbability" class="form-label-sm small">Probability: <span class="smal text-primary">{{leafProbability}}%</span></label>
+            <div class="slider"> 
+              <div class="min small">1</div>
+              <input type="range" class="form-range" min="1" max="100" step="1" id="leafProbability" v-model="leafProbability">
+              <div class="max small">100</div>
+            </div>
+          </div>        
+        </div>
+      </div>
+      <div class="structure">
+        <div class="form-check d-inline-block">
+          <input class="form-check-input" type="checkbox" id="fruit" v-model="fruit">
+          <label class="form-check-label" for="fruit">
+            Fruit
+          </label>
+          <input type="color" id="fruitColor" class="color" v-model="fruitColor">
+        </div>
+        <div>
+          <div class="left-half">
+            <label for="fruitSize" class="form-label-sm small">Fruit Size: <span class="smal text-primary">{{getSize(fruitSize)}}</span></label>
+            <div class="slider"> 
+              <div class="min small">auto</div>
+              <input type="range" class="form-range w-65" min="0" max="3" step="1" id="fruitSize" v-model="fruitSize">
+              <div class="max small">big</div>
+            </div>
+          </div>
+          <div class="right-half">
+            <label for="fruitProbability" class="form-label-sm small">Probability: <span class="smal text-primary">{{fruitProbability}}%</span></label>
+            <div class="slider"> 
+              <div class="min small">1</div>
+              <input type="range" class="form-range" min="1" max="100" step="1" id="fruitProbability" v-model="fruitProbability">
+              <div class="max small">100</div>
+            </div>
+          </div>        
+        </div>
+      </div>
+      <div class="structure">
+        <div class="form-check d-inline-block">
+          <input class="form-check-input" type="checkbox" id="flower" v-model="flower">
+          <label class="form-check-label" for="flower">
+            Flower
+          </label>
+          <input type="color" id="flowerColor" class="color" v-model="flowerColor">
+        </div>
+        <div>
+          <div class="left-half">
+            <label for="flowerSize" class="form-label-sm small">Flower Size: <span class="smal text-primary">{{getSize(flowerSize)}}</span></label>
+            <div class="slider"> 
+              <div class="min small">auto</div>
+              <input type="range" class="form-range w-65" min="0" max="3" step="1" id="flowerSize" v-model="flowerSize">
+              <div class="max small">big</div>
+            </div>
+          </div>
+          <div class="right-half">
+            <label for="flowerProbability" class="form-label-sm small">Probability: <span class="smal text-primary">{{flowerProbability}}%</span></label>
+            <div class="slider"> 
+              <div class="min small">1</div>
+              <input type="range" class="form-range" min="1" max="100" step="1" id="flowerProbability" v-model="flowerProbability">
+              <div class="max small">100</div>
+            </div>
+          </div>        
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -202,7 +293,20 @@ export default {
       faultyTurn: "0",
       probabilityFaultyTurn: "50",
       faultyStep: "0",
-      probabilityFaultyStep: "50"
+      probabilityFaultyStep: "50",
+      activeTab: "general",
+      leaf: false,
+      leafSize: "0",
+      leafProbability: "70",
+      leafColor: "#1ec81e",
+      fruit: false,
+      fruitSize: "0",
+      fruitProbability: "70",
+      fruitColor: "#e11919",
+      flower: false,
+      flowerSize: "0",
+      flowerProbability: "70",
+      flowerColor: "#f0dc19"
     }
   },
   methods: {
@@ -231,7 +335,8 @@ export default {
         this.penColor, 
         this.penSize, 
         this.penSizeDecrease,
-        this.getFaults()
+        this.getFaults(),
+        this.getStructures()
       );
     },
     getRules() {
@@ -286,6 +391,36 @@ export default {
           fault: this.faultyTurn,
           probability: this.probabilityFaultyTurn
         }
+      }
+    },
+    getStructures() {
+      return {
+        leaf: {
+          checked: this.leaf,
+          size: this.leafSize,
+          probability: this.leafProbability,
+          color: this.leafColor
+        },
+        fruit: {
+          checked: this.fruit,
+          size: this.fruitSize,
+          probability: this.fruitProbability,
+          color: this.fruitColor
+        },
+        flower: {
+          checked: this.flower,
+          size: this.flowerSize,
+          probability: this.flowerProbability,
+          color: this.flowerColor
+        }
+      }
+    },
+    getSize(size) {
+      switch(size) {
+        case "0": return "auto"
+        case "1": return "small"
+        case "2": return "medium"
+        case "3": return "big"
       }
     },
     onEnd(event) {
@@ -405,6 +540,9 @@ export default {
         this.backgroundColor = this.newBGColor
       }
     },
+    changeActiveTab(value) {
+      this.activeTab = value
+    },
     saveSystem() {
       let system = {
         axiom: this.axiom,
@@ -427,7 +565,19 @@ export default {
         faultyTurn: this.faultyTurn,
         probabilityFaultyTurn: this.probabilityFaultyTurn,
         faultyStep: this.faultyStep,
-        probabilityFaultyStep: this.probabilityFaultyStep
+        probabilityFaultyStep: this.probabilityFaultyStep,
+        leaf: this.leaf,
+        leafSize: this.leafSize,
+        leafProbability: this.leafProbability,
+        leafColor: this.leafColor,
+        fruit: this.fruit,
+        fruitSize: this.fruitSize,
+        fruitProbability: this.fruitProbability,
+        fruitColor: this.fruitColor,
+        flower: this.flower,
+        flowerSize: this.flowerSize,
+        flowerProbability: this.flowerProbability,
+        flowerColor: this.flowerColor
       }
       this.$root.$emit('saveSystem', system)
     },
@@ -499,7 +649,7 @@ export default {
   position: relative;
   float: left;
   width: 404px;
-  height: calc(100% - 50px);
+  height: calc(100% - 50px - 1px);
   padding: 10px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -546,6 +696,10 @@ label.center {
   text-align: center;
 }
 
+.w-65 {
+  width: 65% !important;
+}
+
 .color {
   display: inline-block;
   margin: 0 5px 0 5px;
@@ -555,6 +709,19 @@ label.center {
 
 .color:hover {
   cursor: pointer;
+}
+
+.structures {
+  text-align: center;
+}
+
+.structure {
+  height: 110px;;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #f8f9fa;
+  border-color: #dee2e6 #dee2e6 #f8f9fa;
 }
 
 </style>
