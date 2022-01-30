@@ -8,21 +8,11 @@ export default class Turtle {
   }
 
   set X(value) {
-    this.x = this.alignCoordinate(value);
+    this.x = value;
   }
 
   set Y(value) {
-    this.y = this.alignCoordinate(value);
-  }
-
-  alignCoordinate(value) {
-    // 0.5 to allign with HTML canvas if pen width is odd
-    if (value%1 == 0 && this.width%2 == 1) {
-      value -= 0.5;
-    } else if (value%1 == 0.5 && this.width%2 == 0) {
-      value += 0.5;
-    }
-    return value;
+    this.y = value;
   }
 
   forwardPenUp(distance) {
