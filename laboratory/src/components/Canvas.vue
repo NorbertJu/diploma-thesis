@@ -30,14 +30,10 @@ export default {
     }
   },
   methods: {
-    storeCanvas() {
-      this.$store.commit('setCanvas', {
-        canvas: new Canvas(this.$refs.turtleCanvas, window.devicePixelRatio, this.$refs.canvas)
-      })
-    },
     storeTurtle() {
+      let canvas = new Canvas(this.$refs.turtleCanvas, window.devicePixelRatio, this.$refs.canvas);
       this.$store.commit('setTurtle', {
-        turtle: new Turtle(this.canvas)
+        turtle: new Turtle(canvas)
       })
     },
     setTurtleSize() {
@@ -94,10 +90,10 @@ export default {
   },
   computed: {
     canvas() {
-      return this.$store.state.canvas;
+      return this.$store.state.Turtle.turtle.canvas;
     },
     turtle() {
-      return this.$store.state.turtle;
+      return this.$store.state.Turtle.turtle;
     },
     showTurtle() {
       if (this.turtle && this.turtle.visible) {
@@ -122,7 +118,6 @@ export default {
   mounted() {
     this.setCanvasSize();
     this.setTurtleSize();
-    this.storeCanvas();
     this.storeTurtle();
   },
 }

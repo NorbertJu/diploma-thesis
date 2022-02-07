@@ -350,7 +350,7 @@ export default {
       this.turtle.rt(this.angle);
     },
     reset() {
-      this.turtle.reset();
+      this.turtle.reset(this.penSize);
     },
     clear() {
       this.canvas.clear();
@@ -631,10 +631,10 @@ export default {
   },
   computed: {
     turtle() {
-      return this.$store.state.turtle;
+      return this.$store.state.Turtle.turtle;
     },
     canvas() {
-      return this.$store.state.canvas;
+      return this.$store.state.Turtle.turtle.canvas;
     }
   }
 }

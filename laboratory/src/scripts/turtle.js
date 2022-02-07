@@ -2,7 +2,7 @@ export default class Turtle {
   constructor(canvas) {
     this.canvas = canvas;
     this.width = 1;
-    this.reset();
+    this.reset(this.width);
     this.pen = true;
     this.visible = true;
   }
@@ -82,8 +82,12 @@ export default class Turtle {
     this.heading = heading;
   }
 
-  reset() {
-    this.goTo(this.canvas.width()/2, this.canvas.height()/2);
+  reset(penSize) {
+    let x = this.canvas.width()/2;
+    let y = this.canvas.height()/2;
+    x%1 === 0 && penSize%2 === 1 ?  x -= 0.5 : undefined
+    y%1 === 0 && penSize%2 === 1 ?  y -= 0.5 : undefined
+    this.goTo(x, y);
     this.seth(90);
   }
 
