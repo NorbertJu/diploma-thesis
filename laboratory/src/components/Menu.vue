@@ -117,178 +117,28 @@
         <a class="nav-link small" v-bind:class="{ 'active': activeTab === 'structures' }" href="#structures" v-on:click="changeActiveTab('structures')">Structures</a>
       </li>
     </ul>
-    <div v-if="activeTab === 'general'">
-      <label for="order" class="form-label-sm small center">Order: <span class="smal text-primary">{{order}}</span></label>
-      <div class="slider"> 
-        <div class="min small">0</div>
-        <input type="range" class="form-range" min="0" max="20" step="1" id="order" v-model="order">
-        <div class="max small">&nbsp;20</div>
-      </div>
-      <label for="length" class="form-label-sm small center">Length: <span class="smal text-primary">{{length}}</span></label>
-      <div class="slider"> 
-        <div class="min small">0</div>
-        <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length">
-        <div class="max small">300</div>
-      </div>
-      <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
-      <div class="slider"> 
-        <div class="min small">0</div>
-        <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
-        <div class="max small">180</div>
-      </div>
-      <div class="left-half">
-        <label for="penSize" class="form-label-sm small">Pen size: <span class="smal text-primary">{{penSize}}</span></label>
-        <div class="slider"> 
-          <div class="min small">1</div>
-          <input type="range" class="form-range" min="1" max="15" step="1" id="penSize" v-model="penSize">
-          <div class="max small">15</div>
-        </div>
-      </div>
-      <div class="right-half">
-        <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="smal text-primary">{{penSizeDecrease}}</span></label>
-        <div class="slider"> 
-          <div class="min small">0</div>
-          <input type="range" class="form-range" min="0" max="5" step="1" id="penSizeDecrease" v-model="penSizeDecrease">
-          <div class="max small align">5</div>
-        </div>
-      </div>
-      <div class="left-half pt-2">
-        <label for="penColor" class="form-label-sm small">Pen color: </label>
-        <input type="color" id="penColor" class="color" v-model="penColor">
-      </div>
-      <div class="right-half pt-2">
-        <label for="backgroundColor" class="form-label-sm small">Background color: </label>
-        <input type="color" id="backgroundColor" class="color" v-model="newBGColor" @blur="changeBackgroundColor">
-      </div>
-    </div>
-    <div v-if="activeTab === 'randomness'">
-      <div class="left-half">
-        <label for="faultyStep" class="form-label-sm small">Faulty step: <span class="smal text-primary">{{faultyStep}}%</span></label>
-        <div class="slider"> 
-          <div class="min small">0</div>
-          <input type="range" class="form-range" min="0" max="50" step="1" id="faultyStep" v-model="faultyStep">
-          <div class="max small">50</div>
-        </div>
-      </div>
-      <div class="right-half">
-        <label for="probabilityFaultyStep" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyStep}}%</span></label>
-        <div class="slider"> 
-          <div class="min small">1</div>
-          <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyStep" v-model="probabilityFaultyStep">
-          <div class="max small">100</div>
-        </div>
-      </div>
-      <div class="left-half pt-3">
-        <label for="faultyTurn" class="form-label-sm small">Faulty turn: <span class="smal text-primary">{{faultyTurn}}</span></label>
-        <div class="slider"> 
-          <div class="min small">0</div>
-          <input type="range" class="form-range" min="0" max="50" step="1" id="faultyTurn" v-model="faultyTurn">
-          <div class="max small">50</div>
-        </div>
-      </div>
-      <div class="right-half pt-3">
-        <label for="probabilityFaultyTurn" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyTurn}}%</span></label>
-        <div class="slider"> 
-          <div class="min small">1</div>
-          <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyTurn" v-model="probabilityFaultyTurn">
-          <div class="max small">100</div>
-        </div>
-      </div>
-    </div>
-    <div v-if="activeTab === 'structures'" class="structures">
-      <div class="structure">
-        <div class="form-check d-inline-block">
-          <input class="form-check-input" type="checkbox" id="leaf" v-model="leaf">
-          <label class="form-check-label" for="leaf">
-            Leaf
-          </label>
-          <input type="color" id="leafColor" class="color" v-model="leafColor">
-        </div>
-        <div>
-          <div class="left-half">
-            <label for="leafSize" class="form-label-sm small">Leaf Size: <span class="smal text-primary">{{getSize(leafSize)}}</span></label>
-            <div class="slider"> 
-              <div class="min small">auto</div>
-              <input type="range" class="form-range w-65" min="0" max="3" step="1" id="leafSize" v-model="leafSize">
-              <div class="max small">big</div>
-            </div>
-          </div>
-          <div class="right-half">
-            <label for="leafProbability" class="form-label-sm small">Probability: <span class="smal text-primary">{{leafProbability}}%</span></label>
-            <div class="slider"> 
-              <div class="min small">1</div>
-              <input type="range" class="form-range" min="1" max="100" step="1" id="leafProbability" v-model="leafProbability">
-              <div class="max small">100</div>
-            </div>
-          </div>        
-        </div>
-      </div>
-      <div class="structure">
-        <div class="form-check d-inline-block">
-          <input class="form-check-input" type="checkbox" id="fruit" v-model="fruit">
-          <label class="form-check-label" for="fruit">
-            Fruit
-          </label>
-          <input type="color" id="fruitColor" class="color" v-model="fruitColor">
-        </div>
-        <div>
-          <div class="left-half">
-            <label for="fruitSize" class="form-label-sm small">Fruit Size: <span class="smal text-primary">{{getSize(fruitSize)}}</span></label>
-            <div class="slider"> 
-              <div class="min small">auto</div>
-              <input type="range" class="form-range w-65" min="0" max="3" step="1" id="fruitSize" v-model="fruitSize">
-              <div class="max small">big</div>
-            </div>
-          </div>
-          <div class="right-half">
-            <label for="fruitProbability" class="form-label-sm small">Probability: <span class="smal text-primary">{{fruitProbability}}%</span></label>
-            <div class="slider"> 
-              <div class="min small">1</div>
-              <input type="range" class="form-range" min="1" max="100" step="1" id="fruitProbability" v-model="fruitProbability">
-              <div class="max small">100</div>
-            </div>
-          </div>        
-        </div>
-      </div>
-      <div class="structure">
-        <div class="form-check d-inline-block">
-          <input class="form-check-input" type="checkbox" id="flower" v-model="flower">
-          <label class="form-check-label" for="flower">
-            Flower
-          </label>
-          <input type="color" id="flowerColor" class="color" v-model="flowerColor">
-        </div>
-        <div>
-          <div class="left-half">
-            <label for="flowerSize" class="form-label-sm small">Flower Size: <span class="smal text-primary">{{getSize(flowerSize)}}</span></label>
-            <div class="slider"> 
-              <div class="min small">auto</div>
-              <input type="range" class="form-range w-65" min="0" max="3" step="1" id="flowerSize" v-model="flowerSize">
-              <div class="max small">big</div>
-            </div>
-          </div>
-          <div class="right-half">
-            <label for="flowerProbability" class="form-label-sm small">Probability: <span class="smal text-primary">{{flowerProbability}}%</span></label>
-            <div class="slider"> 
-              <div class="min small">1</div>
-              <input type="range" class="form-range" min="1" max="100" step="1" id="flowerProbability" v-model="flowerProbability">
-              <div class="max small">100</div>
-            </div>
-          </div>        
-        </div>
-      </div>
-    </div>
+    <General v-if="activeTab === 'general'"/>
+    <Randomness v-if="activeTab === 'randomness'"/>
+    <Structures v-if="activeTab === 'structures'"/>
   </div>
 </template>
 
 <script>
 import LSystem from '../scripts/L-system';
 import draggable from 'vuedraggable'
+import { mapState } from 'vuex'
+
+import General from './MenuGeneral'
+import Randomness from './MenuRandomness'
+import Structures from './MenuStructures'
 
 export default {
   name: 'Menu',
   components: {
-    draggable
+    draggable,
+    General,
+    Randomness,
+    Structures
   },
   created() {
     this.$root.$on('getSystem', this.saveSystem)
@@ -297,161 +147,33 @@ export default {
   data() {
     return {
       options: [{name: 'F', id: 'F'}, {name: 'f', id: 'f'}, {name: '+', id: 'l'}, {name: '-', id: 'r'}, {name: '[ ]', id: 'b'}, {name: 'P', id: 'P'}, {name: 'Q', id: 'Q'}, {name: 'R', id: 'R'}, {name: 'S', id: 'S'}, {name: 'T', id: 'T'}],
-      axiom: [],
-      ruleKey1: [],
-      rule1: [],
-      ruleKey2: [],
-      rule2: [],
-      ruleKey3: [],
-      rule3: [],
-      ruleKey4: [],
-      rule4: [],
-      ruleKey5: [],
-      rule5: [],
-      angle: "20",
-      length: "50",
-      order: "0",
-      penSize: "1",
-      penSizeDecrease: "0",
       LSystem: new LSystem(),
       drop: "",
       drag: "",
-      backgroundColor: "#ffffff",
-      newBGColor: "#ffffff",
-      penColor: "#000000",
-      faultyTurn: "0",
-      probabilityFaultyTurn: "50",
-      faultyStep: "0",
-      probabilityFaultyStep: "50",
       activeTab: "general",
-      leaf: false,
-      leafSize: "0",
-      leafProbability: "70",
-      leafColor: "#1ec81e",
-      fruit: false,
-      fruitSize: "0",
-      fruitProbability: "70",
-      fruitColor: "#e11919",
-      flower: false,
-      flowerSize: "0",
-      flowerProbability: "70",
-      flowerColor: "#f0dc19",
       hoverX: ""
     }
   },
   methods: {
-    fd() {
-      this.turtle.fd(this.distance);
-    },
-    lt() {
-      this.turtle.lt(this.angle);
-    },
-    rt() {
-      this.turtle.rt(this.angle);
-    },
     reset() {
-      this.turtle.reset(this.penSize);
+      this.turtle.reset(this.system.penSize);
     },
     clear() {
       this.canvas.clear();
-      this.canvas.color(this.backgroundColor)
+      this.canvas.color(this.system.backgroundColor)
     },
     draw() {
-      let result = this.LSystem.computeSystem(this.getAxiom(), this.getRules(), this.order);
+      let result = this.LSystem.computeSystem(this.$store.getters.axiom, this.$store.getters.rules, this.system.order);
       this.turtle.draw(
         result, 
-        this.length, 
-        this.angle, 
-        this.penColor, 
-        this.penSize, 
-        this.penSizeDecrease,
-        this.getFaults(),
-        this.getStructures()
+        this.system.length, 
+        this.system.angle, 
+        this.system.penColor, 
+        this.system.penSize, 
+        this.system.penSizeDecrease,
+        this.$store.getters.faults,
+        this.$store.getters.structures
       );
-    },
-    getRules() {
-      let result = {}
-      if (this.ruleKey1?.[0]?.name) {
-        if (result[this.ruleKey1?.[0]?.name]) {
-          result[this.ruleKey1?.[0]?.name].push(this.rule1.map(item => item.name))
-        } else {
-          result[this.ruleKey1?.[0]?.name] = [this.rule1.map(item => item.name)]
-        }
-      }
-      if (this.ruleKey2?.[0]?.name) {
-        if (result[this.ruleKey2?.[0]?.name]) {
-          result[this.ruleKey2?.[0]?.name].push(this.rule2.map(item => item.name))
-        } else {
-          result[this.ruleKey2?.[0]?.name] = [this.rule2.map(item => item.name)]
-        }
-      }
-      if (this.ruleKey3?.[0]?.name) {
-        if (result[this.ruleKey3?.[0]?.name]) {
-          result[this.ruleKey3?.[0]?.name].push(this.rule3.map(item => item.name))
-        } else {
-          result[this.ruleKey3?.[0]?.name] = [this.rule3.map(item => item.name)]
-        }
-      }
-      if (this.ruleKey4?.[0]?.name) {
-        if (result[this.ruleKey4?.[0]?.name]) {
-          result[this.ruleKey4?.[0]?.name].push(this.rule4.map(item => item.name))
-        } else {
-          result[this.ruleKey4?.[0]?.name] = [this.rule4.map(item => item.name)]
-        }
-      }
-      if (this.ruleKey5?.[0]?.name) {
-        if (result[this.ruleKey5?.[0]?.name]) {
-          result[this.ruleKey5?.[0]?.name].push(this.rule5.map(item => item.name))
-        } else {
-          result[this.ruleKey5?.[0]?.name] = [this.rule5.map(item => item.name)]
-        }
-      }
-      return result;
-    },
-    getAxiom() {
-      return this.axiom.map(item => item.name)
-    },
-    getFaults() {
-      return {
-        step: {
-          fault: this.faultyStep,
-          probability: this.probabilityFaultyStep
-        },
-        turn: {
-          fault: this.faultyTurn,
-          probability: this.probabilityFaultyTurn
-        }
-      }
-    },
-    getStructures() {
-      return {
-        leaf: {
-          checked: this.leaf,
-          size: this.leafSize,
-          probability: this.leafProbability,
-          color: this.leafColor
-        },
-        fruit: {
-          checked: this.fruit,
-          size: this.fruitSize,
-          probability: this.fruitProbability,
-          color: this.fruitColor
-        },
-        flower: {
-          checked: this.flower,
-          size: this.flowerSize,
-          probability: this.flowerProbability,
-          color: this.flowerColor
-        }
-      }
-    },
-    getSize(size) {
-      switch(size) {
-        case "0": return "auto"
-        case "1": return "small"
-        case "2": return "medium"
-        case "3": return "big"
-      }
     },
     onEnd(event) {
       //delete both brackets
@@ -564,59 +286,8 @@ export default {
         }
       } 
     },
-    changeBackgroundColor() {
-      if (this.newBGColor !== this.backgroundColor) {
-        this.canvas.color(this.newBGColor)
-        this.backgroundColor = this.newBGColor
-      }
-    },
     changeActiveTab(value) {
       this.activeTab = value
-    },
-    saveSystem() {
-      let system = {
-        axiom: this.axiom,
-        ruleKey1: this.ruleKey1,
-        rule1: this.rule1,
-        ruleKey2: this.ruleKey2,
-        rule2: this.rule2,
-        ruleKey3: this.ruleKey3,
-        rule3: this.rule3,
-        ruleKey4: this.ruleKey4,
-        rule4: this.rule4,
-        ruleKey5: this.ruleKey5,
-        rule5: this.rule5,
-        length: this.length,
-        angle: this.angle,
-        order: this.order,
-        penSize: this.penSize,
-        penSizeDecrease: this.penSizeDecrease,
-        penColor: this.penColor,
-        faultyTurn: this.faultyTurn,
-        probabilityFaultyTurn: this.probabilityFaultyTurn,
-        faultyStep: this.faultyStep,
-        probabilityFaultyStep: this.probabilityFaultyStep,
-        leaf: this.leaf,
-        leafSize: this.leafSize,
-        leafProbability: this.leafProbability,
-        leafColor: this.leafColor,
-        fruit: this.fruit,
-        fruitSize: this.fruitSize,
-        fruitProbability: this.fruitProbability,
-        fruitColor: this.fruitColor,
-        flower: this.flower,
-        flowerSize: this.flowerSize,
-        flowerProbability: this.flowerProbability,
-        flowerColor: this.flowerColor
-      }
-      this.$root.$emit('saveSystem', system)
-    },
-    loadSystem(system) {
-      for (let key in system) {
-        if (this.$data.hasOwnProperty(key) && key !== "backgroundColor" && key !== "newBGColor") {
-          this[key] = system[key]
-        }
-      }
     },
     deleteSymbols(key) {
       switch(key) {
@@ -635,12 +306,136 @@ export default {
     },
     canvas() {
       return this.$store.state.Turtle.turtle.canvas;
-    }
+    },
+    system() {
+      return this.$store.state.System;
+    },
+    axiom: {
+      get () {
+        return this.$store.state.System.axiom
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'axiom',
+          value: value
+        })
+      }
+    },
+    ruleKey1: {
+      get () {
+        return this.$store.state.System.ruleKey1
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'ruleKey1',
+          value: value
+        })
+      }
+    },
+    rule1: {
+      get () {
+        return this.$store.state.System.rule1
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'rule1',
+          value: value
+        })
+      }
+    },
+    ruleKey2: {
+      get () {
+        return this.$store.state.System.ruleKey2
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'ruleKey2',
+          value: value
+        })
+      }
+    },
+    rule2: {
+      get () {
+        return this.$store.state.System.rule2
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'rule2',
+          value: value
+        })
+      }
+    },
+    ruleKey3: {
+      get () {
+        return this.$store.state.System.ruleKey3
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'ruleKey3',
+          value: value
+        })
+      }
+    },
+    rule3: {
+      get () {
+        return this.$store.state.System.rule3
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'rule3',
+          value: value
+        })
+      }
+    },
+    ruleKey4: {
+      get () {
+        return this.$store.state.System.ruleKey4
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'ruleKey4',
+          value: value
+        })
+      }
+    },
+    rule4: {
+      get () {
+        return this.$store.state.System.rule4
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'rule4',
+          value: value
+        })
+      }
+    },
+    ruleKey5: {
+      get () {
+        return this.$store.state.System.ruleKey5
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'ruleKey5',
+          value: value
+        })
+      }
+    },
+    rule5: {
+      get () {
+        return this.$store.state.System.rule5
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'rule5',
+          value: value
+        })
+      }
+    },
   }
 }
 </script>
 
-<style scoped>
+<style>
 .axiomContainer {
   border: 1px solid #ced4da;
   border-radius: 0.2rem;
@@ -761,22 +556,9 @@ label.center {
   cursor: pointer;
 }
 
-.structures {
-  text-align: center;
-}
-
-.structure {
-  height: 120px;;
-}
-
 .nav-tabs .nav-link.active {
   background-color: #f8f9fa;
   border-color: #dee2e6 #dee2e6 #f8f9fa;
-}
-
-.align {
-  padding-left: 15px;
-  padding-right: 5px;
 }
 
 .bi-x {

@@ -4,7 +4,7 @@ const Turtle = {
     }),
     mutations: { 
         setTurtle (state, payload) {
-            state.turtle = payload.turtle;
+            state.turtle = payload;
         },
     }
 }

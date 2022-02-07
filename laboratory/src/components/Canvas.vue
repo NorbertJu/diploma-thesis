@@ -32,9 +32,7 @@ export default {
   methods: {
     storeTurtle() {
       let canvas = new Canvas(this.$refs.turtleCanvas, window.devicePixelRatio, this.$refs.canvas);
-      this.$store.commit('setTurtle', {
-        turtle: new Turtle(canvas)
-      })
+      this.$store.commit('setTurtle', new Turtle(canvas))
     },
     setTurtleSize() {
       this.$refs.turtleImage.style.display = "unset";

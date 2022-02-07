@@ -10,7 +10,7 @@
           </svg>
           Save Image
         </button>
-        <button class="btn btn-sm btn-outline-primary" v-on:click="getSystem()">
+        <button class="btn btn-sm btn-outline-primary" v-on:click="saveSystem()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
             <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
@@ -32,9 +32,6 @@
 <script>
 export default {
   name: 'Header',
-  created() {
-    this.$root.$on('saveSystem', this.saveSystem)
-  },
   methods: {
     saveImage() {
       let canvas = document.createElement('canvas');
@@ -46,12 +43,9 @@ export default {
       a.setAttribute('href', canvas.toDataURL("image/png"));
       a.click();
     },
-    getSystem() {
-      this.$root.$emit('getSystem')
-    },
-    saveSystem(system) {
+    saveSystem() {
       let a = document.createElement("a");
-      let file = new Blob([JSON.stringify(system)], {type: 'application/json'});
+      let file = new Blob([JSON.stringify(this.system)], {type: 'application/json'});
       a.href = URL.createObjectURL(file);
       a.download = "system.json";
       a.click();
@@ -62,7 +56,7 @@ export default {
       input.setAttribute("accept", ".json");
       input.onchange = (event) => {
         new Response(event.target.files[0]).json().then(system => {
-          this.$root.$emit('loadSystem', system)
+          this.$store.commit('loadSystem', system)
         }, error => {
           console.log(error)
         })
@@ -72,7 +66,10 @@ export default {
   },
   computed: {
     canvas() {
-      return this.$store.state.canvas;
+      return this.$store.state.Turtle.turtle.canvas;
+    },
+    system() {
+      return this.$store.state.System;
     }
   }
 }
