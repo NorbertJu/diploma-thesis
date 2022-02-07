@@ -15,9 +15,13 @@
       <draggable v-model="axiom" :group="{ name: 'rules', pull: true, put: onPutAxiom }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
         <span v-for="(element, index) in axiom" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
       </draggable>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x text-secondary" viewBox="0 0 16 16"
+        @mouseover="hoverX = 'axiom'" @mouseout="hoverX = ''" :class="{'text-danger': hoverX === 'axiom', 'd-none': !axiom.length}" @click="deleteSymbols('axiom')">
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
     </div>
     <label for="rule" class="form-label-sm small">Rules</label>
-    <div class="ruleContainer">
+    <div class="ruleContainer mb-1">
       <div class="ruleKey" id="ruleKey1"> 
         <draggable v-model="ruleKey1" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey1" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
@@ -27,9 +31,13 @@
         <draggable v-model="rule1" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule1" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x text-secondary" viewBox="0 0 16 16"
+          @mouseover="hoverX = 'rule1'" @mouseout="hoverX = ''" :class="{'text-danger': hoverX === 'rule1', 'd-none': !rule1.length && !ruleKey1.length}" @click="deleteSymbols('rule1')">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
       </div>
     </div>
-    <div class="ruleContainer">
+    <div class="ruleContainer mb-1">
       <div class="ruleKey" id="ruleKey2"> 
         <draggable v-model="ruleKey2" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey2" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
@@ -39,9 +47,13 @@
         <draggable v-model="rule2" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule2" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x text-secondary" viewBox="0 0 16 16"
+          @mouseover="hoverX = 'rule2'" @mouseout="hoverX = ''" :class="{'text-danger': hoverX === 'rule2', 'd-none': !rule2.length && !ruleKey2.length}" @click="deleteSymbols('rule2')">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
       </div>
     </div>
-    <div class="ruleContainer">
+    <div class="ruleContainer mb-1">
       <div class="ruleKey" id="ruleKey3"> 
         <draggable v-model="ruleKey3" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey3" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
@@ -51,9 +63,13 @@
         <draggable v-model="rule3" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule3" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x text-secondary" viewBox="0 0 16 16"
+          @mouseover="hoverX = 'rule3'" @mouseout="hoverX = ''" :class="{'text-danger': hoverX === 'rule3', 'd-none': !rule3.length && !ruleKey3.length}" @click="deleteSymbols('rule3')">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
       </div>
     </div>
-    <div class="ruleContainer">
+    <div class="ruleContainer mb-1">
       <div class="ruleKey" id="ruleKey4"> 
         <draggable v-model="ruleKey4" :group="{ name: 'rules', pull: true, put: onPutRuleKey }" @end="onEnd" @start="onStart">
           <span v-for="(element, index) in ruleKey4" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
@@ -63,6 +79,10 @@
         <draggable v-model="rule4" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule4" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x text-secondary" viewBox="0 0 16 16"
+          @mouseover="hoverX = 'rule4'" @mouseout="hoverX = ''" :class="{'text-danger': hoverX === 'rule4', 'd-none': !rule4.length && !ruleKey4.length}" @click="deleteSymbols('rule4')">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
       </div>
     </div>
     <div class="ruleContainer">
@@ -75,6 +95,10 @@
         <draggable v-model="rule5" :group="{ name: 'rules', pull: true, put: onPutRule }" @end="onEnd" @add="onAdd" @update="onUpdate" @start="onStart">
           <span v-for="(element, index) in rule5" :key="index" class="border rounded mr-1" ><div class="item text-center">{{element.name}}</div></span>
         </draggable>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x text-secondary" viewBox="0 0 16 16"
+          @mouseover="hoverX = 'rule5'" @mouseout="hoverX = ''" :class="{'text-danger': hoverX === 'rule5', 'd-none': !rule5.length && !ruleKey5.length}" @click="deleteSymbols('rule5')">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
       </div>
     </div>
     <div class="row justify-content-evenly pt-3 pb-3">
@@ -82,9 +106,12 @@
       <button v-on:click="reset()" class="btn btn-outline-secondary btn-sm col-3">Reset</button>
       <button v-on:click="clear()" class="btn btn-outline-danger btn-sm col-3">Clear</button>
     </div> 
-    <ul class="nav nav-tabs mb-3">
+    <ul class="nav nav-tabs mb-2">
       <li class="nav-item">
         <a class="nav-link small" v-bind:class="{ 'active': activeTab === 'general' }" href="#basic" v-on:click="changeActiveTab('general')">General</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link small" v-bind:class="{ 'active': activeTab === 'randomness' }" href="#structures" v-on:click="changeActiveTab('randomness')">Randomness</a>
       </li>
       <li class="nav-item">
         <a class="nav-link small" v-bind:class="{ 'active': activeTab === 'structures' }" href="#structures" v-on:click="changeActiveTab('structures')">Structures</a>
@@ -103,6 +130,38 @@
         <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length">
         <div class="max small">300</div>
       </div>
+      <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
+      <div class="slider"> 
+        <div class="min small">0</div>
+        <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
+        <div class="max small">180</div>
+      </div>
+      <div class="left-half">
+        <label for="penSize" class="form-label-sm small">Pen size: <span class="smal text-primary">{{penSize}}</span></label>
+        <div class="slider"> 
+          <div class="min small">1</div>
+          <input type="range" class="form-range" min="1" max="15" step="1" id="penSize" v-model="penSize">
+          <div class="max small">15</div>
+        </div>
+      </div>
+      <div class="right-half">
+        <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="smal text-primary">{{penSizeDecrease}}</span></label>
+        <div class="slider"> 
+          <div class="min small">0</div>
+          <input type="range" class="form-range" min="0" max="5" step="1" id="penSizeDecrease" v-model="penSizeDecrease">
+          <div class="max small align">5</div>
+        </div>
+      </div>
+      <div class="left-half pt-2">
+        <label for="penColor" class="form-label-sm small">Pen color: </label>
+        <input type="color" id="penColor" class="color" v-model="penColor">
+      </div>
+      <div class="right-half pt-2">
+        <label for="backgroundColor" class="form-label-sm small">Background color: </label>
+        <input type="color" id="backgroundColor" class="color" v-model="newBGColor" @blur="changeBackgroundColor">
+      </div>
+    </div>
+    <div v-if="activeTab === 'randomness'">
       <div class="left-half">
         <label for="faultyStep" class="form-label-sm small">Faulty step: <span class="smal text-primary">{{faultyStep}}%</span></label>
         <div class="slider"> 
@@ -119,13 +178,7 @@
           <div class="max small">100</div>
         </div>
       </div>
-      <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
-      <div class="slider"> 
-        <div class="min small">0</div>
-        <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
-        <div class="max small">180</div>
-      </div>
-      <div class="left-half">
+      <div class="left-half pt-3">
         <label for="faultyTurn" class="form-label-sm small">Faulty turn: <span class="smal text-primary">{{faultyTurn}}</span></label>
         <div class="slider"> 
           <div class="min small">0</div>
@@ -133,37 +186,13 @@
           <div class="max small">50</div>
         </div>
       </div>
-      <div class="right-half">
+      <div class="right-half pt-3">
         <label for="probabilityFaultyTurn" class="form-label-sm small">Probability: <span class="smal text-primary">{{probabilityFaultyTurn}}%</span></label>
         <div class="slider"> 
           <div class="min small">1</div>
           <input type="range" class="form-range" min="1" max="100" step="1" id="probabilityFaultyTurn" v-model="probabilityFaultyTurn">
           <div class="max small">100</div>
         </div>
-      </div>
-      <div class="left-half">
-        <label for="penSize" class="form-label-sm small">Pen size: <span class="smal text-primary">{{penSize}}</span></label>
-        <div class="slider"> 
-          <div class="min small">1</div>
-          <input type="range" class="form-range" min="1" max="15" step="1" id="penSize" v-model="penSize">
-          <div class="max small">15</div>
-        </div>
-      </div>
-      <div class="right-half">
-        <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="smal text-primary">{{penSizeDecrease}}</span></label>
-        <div class="slider"> 
-          <div class="min small">0</div>
-          <input type="range" class="form-range" min="0" max="5" step="1" id="penSizeDecrease" v-model="penSizeDecrease">
-          <div class="max small">5</div>
-        </div>
-      </div>
-      <div class="left-half pt-2">
-        <label for="penColor" class="form-label-sm small">Pen color: </label>
-        <input type="color" id="penColor" class="color" v-model="penColor">
-      </div>
-      <div class="right-half pt-2">
-        <label for="backgroundColor" class="form-label-sm small">Background color: </label>
-        <input type="color" id="backgroundColor" class="color" v-model="newBGColor" @blur="changeBackgroundColor">
       </div>
     </div>
     <div v-if="activeTab === 'structures'" class="structures">
@@ -306,7 +335,8 @@ export default {
       flower: false,
       flowerSize: "0",
       flowerProbability: "70",
-      flowerColor: "#f0dc19"
+      flowerColor: "#f0dc19",
+      hoverX: ""
     }
   },
   methods: {
@@ -587,6 +617,16 @@ export default {
           this[key] = system[key]
         }
       }
+    },
+    deleteSymbols(key) {
+      switch(key) {
+        case 'rule1': this.ruleKey1 = [];
+        case 'rule2': this.ruleKey2 = [];
+        case 'rule3': this.ruleKey3 = [];
+        case 'rule4': this.ruleKey4 = [];
+        case 'rule5': this.ruleKey5 = [];
+        default: this[key] = [];
+      }
     }
   },
   computed: {
@@ -607,7 +647,8 @@ export default {
   min-height: calc(1.5em + 0.5rem + 2px);
   font-size: .875rem;
   background-color: #fff;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.25rem;
+  position: relative;
 }
 
 .ruleContainer {
@@ -617,6 +658,7 @@ export default {
   font-size: .875rem;
   min-height: calc(1.5em + 0.5rem + 2px);
   background-color: #fff;
+  position: relative;
 }
 
 .ruleKey {
@@ -631,8 +673,12 @@ export default {
 .rule {
   float: right;
   min-height: calc(1.5em + 0.5rem);
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.25rem;
   width: calc(100% - 2.5em);
+}
+
+.rule span, .axiomContainer span {
+  margin: 0 1px 0 1px;
 }
 
 .item {
@@ -648,7 +694,7 @@ export default {
   z-index: 0;
   position: relative;
   float: left;
-  width: 404px;
+  width: 444px;
   height: calc(100% - 50px - 1px);
   padding: 10px;
   overflow-y: auto;
@@ -673,7 +719,11 @@ label.center {
 }
 
 .slider input {
-  width: 80%;
+  width: 85%;
+}
+
+.left-half .slider input, .right-half .slider input {
+  width: 72%;
 }
 
 .info {
@@ -686,13 +736,13 @@ label.center {
 
 .left-half {
   float: left;
-  width: 45%;
+  width: 47%;
   text-align: center;
 }
 
 .right-half {
   float: right;
-  width: 50%;
+  width: 47%;
   text-align: center;
 }
 
@@ -716,12 +766,27 @@ label.center {
 }
 
 .structure {
-  height: 110px;;
+  height: 120px;;
 }
 
 .nav-tabs .nav-link.active {
   background-color: #f8f9fa;
   border-color: #dee2e6 #dee2e6 #f8f9fa;
+}
+
+.align {
+  padding-left: 15px;
+  padding-right: 5px;
+}
+
+.bi-x {
+  position: absolute;
+  right: 0;
+  top: 0.4em;
+}
+
+.bi-x:hover {
+  cursor: pointer;
 }
 
 </style>

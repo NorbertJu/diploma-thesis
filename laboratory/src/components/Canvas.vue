@@ -57,6 +57,7 @@ export default {
       this.$refs.turtleImage.style.cursor = 'grabbing';
       window.addEventListener('mousemove', this.moveTurtle)
       window.addEventListener('mouseup', this.drop)
+      window.addEventListener('wheel', this.rotate)
       this.turtleImage.dragX = event.x;
       this.turtleImage.dragY = event.y;
       this.turtleImage.turtleX = this.turtle.x;
@@ -79,6 +80,16 @@ export default {
       this.$refs.turtleImage.style.cursor = 'grab';
       window.removeEventListener('mousemove', this.moveTurtle)
       window.removeEventListener('mouseup', this.drop)
+      window.removeEventListener('wheel', this.rotate)
+    },
+    rotate(event) {
+      if (this.dragging) {
+        if (event.deltaY > 0) {
+          this.turtle.rt(15)
+        } else if (event.deltaY < 0) {
+          this.turtle.lt(15)
+        }
+      }
     }
   },
   computed: {
@@ -130,7 +141,7 @@ export default {
   padding: 20px;
   position: relative;
   float: left;
-  width: calc(100% - 404px);
+  width: calc(100% - 444px);
   height: calc(100% - 50px - 1px);
 }
 
