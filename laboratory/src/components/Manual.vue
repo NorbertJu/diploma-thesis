@@ -15,10 +15,10 @@
       <i>[ ]</i> &rarr; create branch</br>
       </br>
       <b>Axiom</b></br>
-      Initial sequence of symbols</br>
+      <i>Initial sequence of symbols</i></br>
       </br>
       <b>Rules</b></br>
-      Rewrite rules specifying the substitution of symbols that generate new symbol sequences</br>
+      <i>Rewrite rules specifying the substitution of symbols that generate new symbol sequences</i></br>
       </br>
       <b>Buttons</b></br>
       <i class="text-primary">Draw</i> &rarr; draw the defined system</br>
@@ -28,7 +28,6 @@
       <b>Canvas</b></br>
       <i>Drag&Drop</i> &rarr; change the position of the turtle</br>
       <i>Drag&Scroll</i> &rarr; change the orientation of the turtle</br>
-      </br>
     </div>
   </div>
 </template>
