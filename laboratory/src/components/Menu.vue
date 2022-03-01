@@ -438,6 +438,7 @@ export default {
   font-size: .875rem;
   background-color: #fff;
   padding: 0.25rem 0.25rem;
+  position: relative;
 }
 
 .ruleContainer {
@@ -447,6 +448,7 @@ export default {
   font-size: .875rem;
   min-height: calc(1.5em + 0.5rem + 2px);
   background-color: #fff;
+  position: relative;
 }
 
 .ruleKey {

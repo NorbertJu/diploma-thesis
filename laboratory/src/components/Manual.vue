@@ -44,6 +44,7 @@ export default {
 .info {
   position: relative;
   overflow-x: visible;
+  z-index: 10;
 }
 
 .info:hover .manual {
