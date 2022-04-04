@@ -286,13 +286,13 @@ export default {
     },
     deleteSymbols(key) {
       switch(key) {
-        case 'rule1': this.ruleKey1 = [];
-        case 'rule2': this.ruleKey2 = [];
-        case 'rule3': this.ruleKey3 = [];
-        case 'rule4': this.ruleKey4 = [];
-        case 'rule5': this.ruleKey5 = [];
-        default: this[key] = [];
+        case 'rule1': this.ruleKey1 = []; break;
+        case 'rule2': this.ruleKey2 = []; break;
+        case 'rule3': this.ruleKey3 = []; break;
+        case 'rule4': this.ruleKey4 = []; break;
+        case 'rule5': this.ruleKey5 = []; break;
       }
+      this[key] = [];
     }
   },
   computed: {
@@ -541,6 +541,7 @@ label.center {
 .color {
   display: inline-block;
   margin: 0 5px 0 5px;
+  padding: 1px;
   width: 30px;
   height: 20px;
 }
