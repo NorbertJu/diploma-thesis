@@ -10,8 +10,8 @@ Work is being managed via [Kanban](https://github.com/NorbertJu/Diplomovka/proje
 The current state of work evaluated in [Presentation](https://github.com/NorbertJu/Diplomovka/blob/main/literature/L-Sys-Lab.pdf).
 
 ## Links
-- [Thesis](https://github.com/NorbertJu/Diplomovka/blob/main/literature/diplomova_praca.pdf) (created via [Overleaf](https://www.overleaf.com/read/sxrfdhvxptck))
-in [Literature](https://github.com/NorbertJu/Diplomovka/tree/main/literature) folder
+- [Thesis](https://github.com/NorbertJu/Diplomovka/blob/main/documents/diplomova_praca.pdf) (created via [Overleaf](https://www.overleaf.com/read/sxrfdhvxptck))
+in [Documents](https://github.com/NorbertJu/Diplomovka/tree/main/documents) folder
 - [Laboratory](https://l-system-lab.github.io/) (deployed via [GitHub Pages](https://github.com/L-System-Lab/L-System-Lab.github.io))
 - [Source Code](https://github.com/NorbertJu/Diplomovka/tree/main/laboratory)
 
