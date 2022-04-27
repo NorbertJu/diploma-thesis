@@ -12,6 +12,7 @@ const System = {
         ruleKey5: [],
         rule5: [],
         length: "50",
+        auto: false,
         order: "0",
         angle: "20",
         penSize: "1",

@@ -158,10 +158,9 @@ export default {
       this.canvas.color(this.system.backgroundColor)
     },
     draw() {
-      let result = this.LSystem.computeSystem(this.$store.getters.axiom, this.$store.getters.rules, this.system.order);
       this.turtle.draw(
-        result, 
-        this.system.length, 
+        this.LSystem.computeSystem(this.$store.getters.axiom, this.$store.getters.rules, this.system.order), 
+        this.system.auto || this.system.length, 
         this.system.angle, 
         this.system.penColor, 
         this.system.penSize, 
