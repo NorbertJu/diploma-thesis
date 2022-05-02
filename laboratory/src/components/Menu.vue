@@ -564,4 +564,11 @@ label.center {
   cursor: pointer;
 }
 
+@media (max-width: 992px) {
+  .menu {
+    width: 100%;
+    height: auto;
+  }
+}
+
 </style>
