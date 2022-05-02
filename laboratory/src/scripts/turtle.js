@@ -248,10 +248,13 @@ export default class Turtle {
   }
 
   draw(system, length, angle, penColor, penSize, penSizeDecrease, faults, structures) {
+    if (length === true) {
+      length = this.computeAutoLength(system, angle)
+    }
     this.penColor(penColor)
     this.penSize(penSize)
     let stack = [];
-    for (let command of system) {
+    for (const command of system) {
       switch(command) {
         case "F": 
           this.fd(this.computeFaultyStep(length, faults.step)); 
@@ -278,6 +281,72 @@ export default class Turtle {
           break;
       }
     }
+  }
+
+  computeAutoLength(system, angle) {
+    let [width, height] = [this.canvas.parent.offsetWidth, this.canvas.parent.offsetHeight]
+    let [x, y, h] = [this.x, this.y, this.heading]
+    let start = {x, y}
+    let [top, bottom, right, left] = [y, y, x, x]
+    let stack = [];
+    for (const command of system) {
+      switch(command) {
+        case "F": 
+        case "f": 
+          [x, y] = this.autoFd(x, y, h); 
+          break;
+        case "+": 
+          h = this.autoLt(angle, h); 
+          break;
+        case "-": 
+          h = this.autoRt(angle, h); 
+          break;
+        case "[": 
+          stack.push([x, y, h]); 
+          break;
+        case "]": 
+          [x, y, h] = stack.pop()
+          break;
+      }
+      if (top > y) top = y;
+      if (bottom < y) bottom = y;
+      if (right < x) right = x;
+      if (left > x) left = x;
+    }
+    const margin = 10
+    let scalingOptions = {
+      top: top > 0 ? (top - margin > 0 ? top - margin : top) / (start.y - top) : 0,
+      bottom: bottom < height  ? (height - bottom - margin > 0 ? height - bottom - margin : height - bottom) / (bottom - start.y) : 0,
+      right: right < width ? (width - right - margin > 0 ? width - right - margin : width - right) / (right - start.x) : 0,
+      left: left > 0 ? (left - margin > 0 ? left - margin : left) / (start.x - left) : 0,
+    }
+    return Math.floor(Math.min(...Object.values(scalingOptions)) + 1)
+  }
+
+  autoFd(x, y, h) {
+    let cosAngle = Math.cos((h * Math.PI) / 180.0);
+    let sinAngle = Math.sin((h * Math.PI) / 180.0);
+    let newX = x + cosAngle;
+    let newY = y - sinAngle;
+    return [newX, newY]
+  }
+
+  autoLt(angle, h) {
+    angle = angle % 360;
+    h += angle;
+    if (h >= 360) {
+      h = h % 360;
+    }
+    return h
+  }
+
+  autoRt(angle, h) {
+    angle = angle % 360;
+    h -= angle;
+    if (h < 0) {
+      h = 360 + h;
+    }
+    return h
   }
 
 }

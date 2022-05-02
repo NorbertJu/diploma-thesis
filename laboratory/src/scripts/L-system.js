@@ -1,5 +1,4 @@
 export default class LSystem {
-  constructor() {}
 
   computeSystem(axiom, rules, iterations) {
     let result = axiom;
@@ -12,7 +11,7 @@ export default class LSystem {
   rewrite(word, rules) {
     let result = "";
     for (let char of word) {
-      result += rules[char] ? rules[char][Math.floor(Math.random() * rules[char].length)] : char;
+      result += rules[char] ? rules[char][Math.floor(Math.random() * rules[char].length)].join('') : char;
     }
     return result;
   }

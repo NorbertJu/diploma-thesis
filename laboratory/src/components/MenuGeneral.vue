@@ -1,25 +1,30 @@
 <template>
   <div>
-    <label for="order" class="form-label-sm small center">Order: <span class="smal text-primary">{{order}}</span></label>
+    <label for="order" class="form-label-sm small center">Order: <span class="text-primary">{{order}}</span></label>
     <div class="slider"> 
       <div class="min small">0</div>
       <input type="range" class="form-range" min="0" max="20" step="1" id="order" v-model="order">
       <div class="max small">&nbsp;20</div>
     </div>
-    <label for="length" class="form-label-sm small center">Length: <span class="smal text-primary">{{length}}</span></label>
-    <div class="slider"> 
+    <label for="length" class="form-label-sm small center">
+      Length: <span class="text-primary">{{auto ? 'auto' : length}}</span><br>
+      <span class="d-flex justify-content-center align-items-center lh-1">
+        <input type="checkbox" id="auto" name="auto" role="button" v-model="auto"><label for="auto" class="auto-label" role="button">auto</label>
+      </span>
+    </label>
+    <div class="slider" v-bind:class="{ 'text-secondary': auto }"> 
       <div class="min small">0</div>
-      <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length">
+      <input type="range" class="form-range" min="0" max="300" step="1" id="length" v-model="length" v-bind:disabled="auto">
       <div class="max small">300</div>
     </div>
-    <label for="angle" class="form-label-sm small center">Angle: <span class="smal text-primary">{{angle}}</span></label>
+    <label for="angle" class="form-label-sm small center">Angle: <span class="text-primary">{{angle}}</span></label>
     <div class="slider"> 
       <div class="min small">0</div>
       <input type="range" class="form-range" min="0" max="180" step="1" id="angle" v-model="angle">
       <div class="max small">180</div>
     </div>
     <div class="left-half">
-      <label for="penSize" class="form-label-sm small">Pen size: <span class="smal text-primary">{{penSize}}</span></label>
+      <label for="penSize" class="form-label-sm small">Pen size: <span class="text-primary">{{penSize}}</span></label>
       <div class="slider"> 
         <div class="min small">1</div>
         <input type="range" class="form-range" min="1" max="15" step="1" id="penSize" v-model="penSize">
@@ -27,7 +32,7 @@
       </div>
     </div>
     <div class="right-half">
-      <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="smal text-primary">{{penSizeDecrease}}</span></label>
+      <label for="penSizeDecrease" class="form-label-sm small">Pen size decrease: <span class="text-primary">{{penSizeDecrease}}</span></label>
       <div class="slider"> 
         <div class="min small">0</div>
         <input type="range" class="form-range" min="0" max="5" step="1" id="penSizeDecrease" v-model="penSizeDecrease">
@@ -147,6 +152,17 @@ export default {
           value: value
         })
       }
+    },
+    auto: {
+      get () {
+        return this.$store.state.System.auto
+      },
+      set (value) {
+        this.$store.commit('changeSystem', {
+          name: 'auto',
+          value: value
+        })
+      }
     }
   }
 }
@@ -156,5 +172,9 @@ export default {
 .align {
   padding-left: 15px;
   padding-right: 5px;
+}
+
+.auto-label {
+  padding-left: 0.5em;
 }
 </style>

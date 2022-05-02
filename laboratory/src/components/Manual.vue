@@ -44,7 +44,7 @@ export default {
 .info {
   position: relative;
   overflow-x: visible;
-  z-index: 10;
+  z-index: 1;
 }
 
 .info:hover .manual {
@@ -62,5 +62,12 @@ export default {
   opacity: 0;
   transition: opacity 0.5s;
   pointer-events: none;
+  z-index: 2;
+}
+
+@media (max-width: 450px) {
+  .manual {
+    max-width: 340px;
+  }
 }
 </style>

@@ -145,4 +145,11 @@ export default {
   cursor: grab;
 }
 
+@media (max-width: 992px) {
+  .canvas-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 </style>
