@@ -313,12 +313,12 @@ export default class Turtle {
       if (right < x) right = x;
       if (left > x) left = x;
     }
-    const margin = 10
+    const padding = 20
     let scalingOptions = {
-      top: top > 0 ? (top - margin > 0 ? top - margin : top) / (start.y - top) : 0,
-      bottom: bottom < height  ? (height - bottom - margin > 0 ? height - bottom - margin : height - bottom) / (bottom - start.y) : 0,
-      right: right < width ? (width - right - margin > 0 ? width - right - margin : width - right) / (right - start.x) : 0,
-      left: left > 0 ? (left - margin > 0 ? left - margin : left) / (start.x - left) : 0,
+      top: top > 0 ? (top - padding > 0 ? top - padding : top) / (start.y - top) : 0,
+      bottom: bottom < height  ? (height - bottom - padding > 0 ? height - bottom - padding : height - bottom) / (bottom - start.y) : 0,
+      right: right < width ? (width - right - padding > 0 ? width - right - padding : width - right) / (right - start.x) : 0,
+      left: left > 0 ? (left - padding > 0 ? left - padding : left) / (start.x - left) : 0,
     }
     return Math.floor(Math.min(...Object.values(scalingOptions)) + 1)
   }
